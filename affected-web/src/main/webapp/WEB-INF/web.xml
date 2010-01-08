@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app id="affected" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+    <!-- *************************************************************** -->
+    <!-- ****************** APPLICATION SETTINGS ***************** -->
+    <!-- *************************************************************** -->
+    <display-name>affected</display-name>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+    <!-- *************************************************************** -->
+    <!-- ********************** CONTEXT PARAMS ******************* -->
+    <!-- *************************************************************** -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/context/applicationContext.xml
+            /WEB-INF/context/applicationContext-svn.xml
+        </param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>webAppRootKey</param-name>
+        <param-value>webapp</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>/WEB-INF/config/log4j.xml</param-value>
+    </context-param>
+
+    <!-- *************************************************************** -->
+    <!-- ********************** LISTENERS **************************** -->
+    <!-- *************************************************************** -->
+    <!-- Log4J configurer listener -->
+    <listener>
+        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+    </listener>
+
+    <!-- Context loader listener -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!-- *************************************************************** -->
+    <!-- ********************** SERVLETS ***************************** -->
+    <!-- *************************************************************** -->
+    <!-- The Spring MVC Dispatcher -->
+    <servlet>
+        <servlet-name>affected</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>affected</servlet-name>
+        <url-pattern>*.html</url-pattern>
+    </servlet-mapping>
+</web-app>

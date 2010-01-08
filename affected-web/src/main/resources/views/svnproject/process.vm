@@ -1,0 +1,8 @@
+#if($resultMap)
+    $resultMap
+#end
+
+#if($exc)
+    $exc
+    $exc.getCause()
+#end

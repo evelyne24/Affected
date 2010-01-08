@@ -1,0 +1,28 @@
+package org.codeandmagic.affected.scanner;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.List;
+
+import junit.framework.TestCase;
+
+// @affects: [ComponentA, ComponentB;ComponentC]
+
+public class TestSimpleScanner extends TestCase {
+	private SimpleTagScanner simpleScanner;
+	private String input;
+
+	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+		simpleScanner = new SimpleTagScanner();
+		BufferedReader reader = new BufferedReader(new FileReader(new File("TestSimpleScanner.txt")));
+		input = "";
+		while((input += reader.readLine()) != null) {}
+	}
+	
+	public void testRegex() {
+		List<String> result = simpleScanner.scan(input);		
+	}
+}

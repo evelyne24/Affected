@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="managerPool" class="org.codeandmagic.affected.svn.impl.svnkit.SvnKitManagerPool" init-method="init"/>
+
+    <bean id=" projectProcessor" class="org.codeandmagic.affected.svn.impl.svnkit.SvnKitProjectProcessor">
+        <property name="changeChecker" ref="changeChecker"/>
+        <property name="fileContentRetriever" ref="fileContentRetriever"/>
+        <property name="fileTypeChecker" ref="fileTypeChecker"/>
+        <property name="versionChecker" ref="versionChecker"/>
+        <property name="tagScanner" ref="tagScanner"/>
+        <!-- the service property is autowired -->
+    </bean>
+
+    <bean id="changeChecker" class="org.codeandmagic.affected.svn.impl.svnkit.SvnKitPathChangeChecker">
+        <property name="managerPool" ref="managerPool"/>
+    </bean>
+
+    <bean id="fileContentRetriever" class="org.codeandmagic.affected.svn.impl.svnkit.SvnKitFileContentRetriever">
+        <property name="managerPool" ref="managerPool"/>
+    </bean>
+
+    <bean id="fileTypeChecker" class="org.codeandmagic.affected.svn.impl.svnkit.SvnKitFileTypeChecker">
+        <property name="managerPool" ref="managerPool"/>
+    </bean>
+
+    <bean id="versionChecker" class="org.codeandmagic.affected.svn.impl.svnkit.SvnKitVersionChecker">
+        <property name="managerPool" ref="managerPool"/>
+    </bean>
+
+    <bean id="tagScanner" class="org.codeandmagic.affected.scanner.impl.SimpleTagScanner"/>
+</beans>

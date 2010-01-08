@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+
+    <!-- Activates the check for @Required annotation that are used to check the integrity of the injected beans -->
+    <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
+
+    <!-- Creating a global log bean -->
+    <bean id="log" class="org.springframework.beans.factory.config.CommonsLogFactoryBean">
+        <property name="logName" value="affected"/>
+    </bean>
+
+    <!-- Property Configurer -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>/WEB-INF/config/jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Data Source -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${database.driverClassName}"/>
+        <property name="url" value="${database.url}"/>
+        <property name="username" value="${database.username}"/>
+        <property name="password" value="${database.password}"/>
+    </bean>
+
+    <context:component-scan base-package="org.codeandmagic.affected.persistance.impl">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+    </context:component-scan>
+
+    <context:component-scan base-package="org.codeandmagic.affected.service.impl">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+    </context:component-scan>
+
+    <bean id="svnProjectAutoLoader" class="org.codeandmagic.affected.daemon.SvnProjectAutoLoader"/>
+
+</beans>
