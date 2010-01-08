@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.codeandmagic</groupId>
+    <artifactId>affected</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Affected</name>
+    <modules>
+        <module>affected-core</module>
+        <module>affected-web</module>
+    </modules>
+
+    <properties>
+        <affected.version>0.0.1-SNAPSHOT</affected.version>
+    </properties>
+
+    <!-- Building instructions and lifecycle -->
+    <build>
+        <plugins>
+            <!--
+                   The compile plugin. need to explicitly set java 1.5 as taget so it
+                   will understand annotations
+               -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.0.2</version>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <!-- DDNet Repository -->
+        <repository>
+            <id>ss1.is.ddnet.ro-releases</id>
+            <name>ss1.is.ddnet.ro-releases</name>
+            <url>http://10.11.99.7:8080/artifactory/libs-releases-local</url>
+        </repository>
+
+        <!-- Spring Repository Release -->
+        <repository>
+            <id>com.springsource.repository.bundles.release</id>
+            <name>SpringSource Enterprise Bundle Repository - SpringSource Bundle Releases</name>
+            <url>http://repository.springsource.com/maven/bundles/release</url>
+        </repository>
+
+        <!-- Spring Repository External -->
+        <repository>
+            <id>com.springsource.repository.bundles.external</id>
+            <name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
+            <url>http://repository.springsource.com/maven/bundles/external</url>
+        </repository>
+    </repositories>
+</project>
