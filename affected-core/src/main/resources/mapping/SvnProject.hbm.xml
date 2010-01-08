@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.codeandmagic.affected.svn.api">
+
+    <class name="SvnProject" table="svnproject">
+
+        <id name="id">
+            <generator class="hilo"/>
+        </id>
+
+        <version name="version" unsaved-value="null"/>
+
+        <property name="name"/>
+
+        <property name="url"/>
+
+        <property name="lastCheckedVersion" not-null="false"/>
+
+    </class>
+
+</hibernate-mapping>
