@@ -17,7 +17,8 @@ public class SimpleTagScanner implements TagScanner {
     public static final String TAG = "(\\s)*(\\w)+(\\s)*"; // (\\s)*[^\\s]*(\\s)*
 
     // TODO allow empty list
-    public static final String START = "@affects(\\s)*(:)?(\\s)*\\[";
+    // TODO make a dictionary, with configurable tag names
+    public static final String START = "@(affect)?(affects)?(affected)?(\\s)*(:)?(\\s)*\\[";
     public static final String CONTENT = TAG + "[" + SEPARATORS + "]";
     public static final String END = TAG + "\\]";
 
@@ -52,9 +53,7 @@ public class SimpleTagScanner implements TagScanner {
                     results.add(partialResult);
                 }
                 // add the tag
-                results
-                        .add(endMatcher.group().substring(0, endMatcher.group().length() - 1)
-                                .trim());
+                results.add(endMatcher.group().substring(0, endMatcher.group().length() - 1).trim());
                 return results;
             }
         }

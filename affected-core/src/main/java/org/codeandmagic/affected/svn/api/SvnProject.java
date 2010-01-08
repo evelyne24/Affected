@@ -1,15 +1,12 @@
 package org.codeandmagic.affected.svn.api;
 
-/**
- * An abstract concept representing a svn project, located on a repository at the given url. The
- * repository credentials are also provided.
- */
+/** An abstract concept representing a svn project, located on a repository at the given url. */
 public class SvnProject {
     private int id;
+    private Integer version;
+    private String name;
     private String url;
-    private long localVersion;
-    private String username;
-    private String password;
+    private long lastCheckedVersion;
 
     public void setId(int id) {
         this.id = id;
@@ -29,39 +26,39 @@ public class SvnProject {
         this.url = url;
     }
 
-    /** @return the username used to access the project's repository */
-    public String getUsername() {
-        return username;
+    /** @return the version of the last processed version of the project */
+    public long getLastCheckedVersion() {
+        return lastCheckedVersion;
     }
 
-    /** @param username the username used to access the project's repository */
-    public void setUsername(String username) {
-        this.username = username;
+    /** @param lastCheckedVersion the version of the last processed version of the project */
+    public void setLastCheckedVersion(long lastCheckedVersion) {
+        this.lastCheckedVersion = lastCheckedVersion;
     }
 
-    /** @return the password used to access the project's repository */
-    public String getPassword() {
-        return password;
+    /** @return the unique name of the project */
+    public String getName() {
+        return name;
     }
 
-    /** @param password the password used to access the project's repository */
-    public void setPassword(String password) {
-        this.password = password;
+    /** @param name the unique name of the project */
+    public void setName(String name) {
+        this.name = name;
     }
 
-    /** @return the version of the local working copy of the project */
-    public long getLocalVersion() {
-        return localVersion;
+    /** @return the Hibernate version */
+    public Integer getVersion() {
+        return version;
     }
 
-    /** @param localVersion the version of the local working copy of the project */
-    public void setLocalVersion(long localVersion) {
-        this.localVersion = localVersion;
+    /** @param version the Hibernate version */
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 
     @Override
     public String toString() {
-        return "{url=" + url + ",localVer=" + localVersion + ",username=" + username + ",pass=" + password + "}";
+        return this.getClass().getSimpleName() + "@{id=" + id + ",name='" + name +
+                "',url='" + url + "',lastCheckedVer=" + lastCheckedVersion + "}";
     }
-
 }

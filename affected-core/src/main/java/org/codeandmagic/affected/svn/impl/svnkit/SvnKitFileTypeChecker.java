@@ -4,14 +4,15 @@ import org.codeandmagic.affected.svn.api.SvnException;
 import org.codeandmagic.affected.svn.api.SvnFileType;
 import org.codeandmagic.affected.svn.api.SvnFileTypeChecker;
 import org.codeandmagic.affected.svn.api.SvnProject;
+import org.codeandmagic.affected.user.User;
 import org.tmatesoft.svn.core.SVNException;
 import org.tmatesoft.svn.core.SVNNodeKind;
 
 public class SvnKitFileTypeChecker extends SvnKitAbstractRepository implements SvnFileTypeChecker {
 
-    public SvnFileType getFileType(SvnProject project, String path, long targetRevision) throws SvnException {
+    public SvnFileType getFileType(SvnProject project, User user, String path, long targetRevision) throws SvnException {
         try {
-            SVNNodeKind type = managerPool.getSvnRepository(project).checkPath(path, targetRevision);
+            SVNNodeKind type = managerPool.getSvnRepository(project, user).checkPath(path, targetRevision);
             if (type.equals(SVNNodeKind.FILE)) {
                 return SvnFileType.FILE;
             }

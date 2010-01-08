@@ -5,15 +5,13 @@ import org.codeandmagic.affected.svn.api.SvnProject;
 
 import java.util.List;
 
-// @affects: SvnProjectService
+// @affects: SvnProjectService, SvnProjectController
 public interface SvnProjectDao {
-    SvnProject get(String url) throws SvnException;
+    SvnProject get(String name) throws SvnException;
 
-    List<SvnProject> getAllProjects();
+    List<SvnProject> getAll();
 
-    SvnProject create(String url, long localVersion, String username, String password) throws SvnException;
+    void save(SvnProject project);
 
-    void update(SvnProject project);
-
-    void delete(String url);
+    void delete(SvnProject project);
 }

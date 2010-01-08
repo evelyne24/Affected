@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class SvnProjectServiceJdbc implements SvnProjectService {
+public class SvnProjectServiceDefault implements SvnProjectService {
     private SvnProjectDao dao;
 
     @Required
@@ -22,27 +22,32 @@ public class SvnProjectServiceJdbc implements SvnProjectService {
     }
 
     @Transactional(readOnly = true)
-    public SvnProject get(String url) throws SvnException {
-        return dao.get(url);
+    public SvnProject get(String name) throws SvnException {
+        return dao.get(name);
     }
 
     @Transactional(readOnly = true)
-    public List<SvnProject> getAllProjects() {
-        return dao.getAllProjects();
+    public List<SvnProject> getAll() {
+        return dao.getAll();
     }
 
     @Transactional(readOnly = false)
-    public SvnProject create(String url, long localVersion, String username, String password) throws SvnException {
-        return dao.create(url, localVersion, username, password);
+    public SvnProject create(String name, String url, long lastCheckedVersion) throws SvnException {
+        SvnProject proj = new SvnProject();
+        proj.setName(name);
+        proj.setUrl(url);
+        proj.setLastCheckedVersion(lastCheckedVersion);
+        save(proj);
+        return proj;
     }
 
     @Transactional(readOnly = false)
-    public void update(SvnProject project) {
-        dao.update(project);
+    public void save(SvnProject project) {
+        dao.save(project);
     }
 
     @Transactional(readOnly = false)
-    public void delete(String url) {
-        dao.delete(url);
+    public void delete(String name) throws SvnException {
+        dao.delete(dao.get(name));
     }
 }

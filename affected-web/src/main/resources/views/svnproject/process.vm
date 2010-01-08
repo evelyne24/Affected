@@ -1,5 +1,5 @@
-#if($resultMap)
-    $resultMap
+#if($result)
+    $result
 #end
 
 #if($exc)

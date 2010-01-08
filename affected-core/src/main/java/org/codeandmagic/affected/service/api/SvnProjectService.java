@@ -6,13 +6,13 @@ import org.codeandmagic.affected.svn.api.SvnProject;
 import java.util.List;
 
 public interface SvnProjectService {
-    SvnProject get(String url) throws SvnException;
+    SvnProject get(String name) throws SvnException;
 
-    List<SvnProject> getAllProjects();
+    List<SvnProject> getAll();
 
-    SvnProject create(String url, long localVersion, String username, String password) throws SvnException;
+    SvnProject create(String name, String url, long lastCheckedVersion) throws SvnException;
 
-    void update(SvnProject project);
+    void save(SvnProject project);
 
-    void delete(String url);
+    void delete(String name) throws SvnException;
 }

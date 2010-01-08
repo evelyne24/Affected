@@ -35,11 +35,17 @@
     </build>
 
     <repositories>
-        <!-- DDNet Repository -->
         <repository>
-            <id>ss1.is.ddnet.ro-releases</id>
-            <name>ss1.is.ddnet.ro-releases</name>
-            <url>http://10.11.99.7:8080/artifactory/libs-releases-local</url>
+            <id>org.xerial.sqlite</id>
+            <name>Xerial SQLite Driver</name>
+            <url>http://www.xerial.org/maven/repository/artifact/</url>
+        </repository>
+
+        <!-- SvnKit Repository -->
+        <repository>
+            <id>org.tmatesoft.svnkit</id>
+            <name>SvnKit</name>
+            <url>http://maven.svnkit.com/maven2/</url>
         </repository>
 
         <!-- Spring Repository Release -->

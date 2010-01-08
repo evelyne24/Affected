@@ -3,6 +3,7 @@ package org.codeandmagic.affected.svn.impl.svnkit;
 import org.codeandmagic.affected.svn.api.SvnException;
 import org.codeandmagic.affected.svn.api.SvnFileContentRetriever;
 import org.codeandmagic.affected.svn.api.SvnProject;
+import org.codeandmagic.affected.user.User;
 import org.tmatesoft.svn.core.*;
 import org.tmatesoft.svn.core.io.ISVNFileCheckoutTarget;
 import org.tmatesoft.svn.core.io.SVNRepository;
@@ -13,7 +14,7 @@ public class SvnKitFileContentRetriever extends SvnKitAbstractRepository impleme
         SvnFileContentRetriever {
     protected final static String TEMP_FILE = "TempCheckout.txt";
 
-    public String getFileContent(SvnProject project, String filePath, long revision) throws SvnException {
+    public String getFileContent(SvnProject project, User user, String filePath, long revision) throws SvnException {
         try {
             final File destPath = new File(TEMP_FILE);
             if (!destPath.exists()) {
@@ -21,7 +22,7 @@ public class SvnKitFileContentRetriever extends SvnKitAbstractRepository impleme
             }
 
             // remove the base project path
-            SVNRepository repo = managerPool.getSvnRepository(project);
+            SVNRepository repo = managerPool.getSvnRepository(project, user);
             filePath = removeBasePath(filePath, repo);
 
             repo.checkoutFiles(revision, new String[]{filePath},

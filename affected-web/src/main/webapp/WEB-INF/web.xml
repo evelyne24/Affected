@@ -19,6 +19,8 @@
         <param-value>
             /WEB-INF/context/applicationContext.xml
             /WEB-INF/context/applicationContext-svn.xml
+            /WEB-INF/context/applicationContext-service.xml
+            /WEB-INF/context/applicationContext-persistence.xml
         </param-value>
     </context-param>
 

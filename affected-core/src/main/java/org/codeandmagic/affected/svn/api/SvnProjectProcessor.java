@@ -1,7 +1,8 @@
 package org.codeandmagic.affected.svn.api;
 
-import java.util.List;
-import java.util.Map;
+import org.codeandmagic.affected.user.User;
+
+import java.util.Set;
 
 /**
  * This processor will receive information about a working copy of a svn project and perform the
@@ -20,8 +21,7 @@ public interface SvnProjectProcessor {
      *
      * @param project the {@link org.codeandmagic.affected.svn.api.SvnProject} to be scanned for tags
      *
-     * @return a map where the key represents the path of a modified file, and the value
-     *         represents the list of parsed '@affects' tags found in that file
+     * @return a set of parsed '@affects' tags found in that file
      */
-    Map<String, List<String>> process(SvnProject project) throws SvnException;
+    Set<String> process(SvnProject project, User user) throws SvnException;
 }

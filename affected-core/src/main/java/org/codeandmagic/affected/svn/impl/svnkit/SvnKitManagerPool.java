@@ -4,6 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.codeandmagic.affected.svn.api.SvnException;
 import org.codeandmagic.affected.svn.api.SvnProject;
+import org.codeandmagic.affected.user.User;
 import org.tmatesoft.svn.core.SVNException;
 import org.tmatesoft.svn.core.SVNURL;
 import org.tmatesoft.svn.core.auth.ISVNAuthenticationManager;
@@ -69,17 +70,17 @@ public class SvnKitManagerPool {
     }
 
 
-    public SVNClientManager getSvnManager(SvnProject project) {
+    public SVNClientManager getSvnManager(SvnProject project, User user) {
         if (!clientManagers.containsKey(project.getUrl())) {
-            initClientManager(project.getUrl(), project.getUsername(), project.getPassword());
+            initClientManager(project.getUrl(), user.getUsername(), user.getPassword());
         }
 
         return clientManagers.get(project.getUrl());
     }
 
-    public SVNRepository getSvnRepository(SvnProject project) throws SvnException {
+    public SVNRepository getSvnRepository(SvnProject project, User user) throws SvnException {
         if (!repositories.containsKey(project.getUrl())) {
-            initRepository(project.getUrl(), project.getUsername(), project.getPassword());
+            initRepository(project.getUrl(), user.getUsername(), user.getPassword());
         }
 
         return repositories.get(project.getUrl());
