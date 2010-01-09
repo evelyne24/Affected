@@ -22,7 +22,6 @@ package org.codeandmagic.affected.svn.impl.svnkit;
 import org.codeandmagic.affected.svn.api.SvnException;
 import org.codeandmagic.affected.svn.api.SvnProject;
 import org.codeandmagic.affected.svn.api.SvnVersionChecker;
-import org.codeandmagic.affected.user.User;
 import org.tmatesoft.svn.core.SVNException;
 import org.tmatesoft.svn.core.SVNURL;
 import org.tmatesoft.svn.core.wc.SVNInfo;
@@ -30,9 +29,9 @@ import org.tmatesoft.svn.core.wc.SVNRevision;
 
 public class SvnKitVersionChecker extends SvnKitAbstractClientManager implements SvnVersionChecker {
 
-    public long getRemoteVersion(SvnProject project, User user) throws SvnException {
+    public long getRemoteVersion(SvnProject project) throws SvnException {
         try {
-            SVNInfo svnInfo = managerPool.getSvnManager(project, user).getWCClient().doInfo(
+            SVNInfo svnInfo = managerPool.getSvnManager(project).getWCClient().doInfo(
                     SVNURL.parseURIEncoded(project.getUrl()), SVNRevision.HEAD, SVNRevision.HEAD);
             return svnInfo.getCommittedRevision().getNumber();
 

@@ -20,7 +20,6 @@
 package org.codeandmagic.affected.web.controller;
 
 import org.codeandmagic.affected.service.api.SvnProjectService;
-import org.codeandmagic.affected.service.api.UserService;
 import org.codeandmagic.affected.svn.api.SvnException;
 import org.codeandmagic.affected.svn.api.SvnProjectProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,19 +38,12 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class SvnProjectController {
     private SvnProjectService svnProjectService;
-    private UserService userService;
     private SvnProjectProcessor processor;
 
     @Required
     @Autowired
     public void setSvnProjectService(SvnProjectService svnProjectService) {
         this.svnProjectService = svnProjectService;
-    }
-
-    @Required
-    @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
     }
 
     @Required
@@ -99,7 +91,7 @@ public class SvnProjectController {
     public ModelAndView process(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         ModelAndView m = new ModelAndView("svnproject/process");
         try {
-            m.addObject("result", processor.process(svnProjectService.get(request.getParameter("name")), userService.get(request.getParameter("username"))));
+            m.addObject("result", processor.process(svnProjectService.get(request.getParameter("name"))));
         } catch (SvnException e) {
             m.addObject("exc", e);
         }

@@ -19,18 +19,25 @@
 
 package org.codeandmagic.affected.svn.api;
 
-/** An abstract concept representing a svn project, located on a repository at the given url. */
+/**
+ * An abstract concept representing a svn project, located on a repository at the given url.
+ * The credentials for the svn authentication, if needed, are also provided.
+ */
 public class SvnProject {
     private int id;
     private Integer version;
     private String name;
     private String url;
     private long lastCheckedVersion;
+    private String username;
+    private String password;
 
+    /** @param id  */
     public void setId(int id) {
         this.id = id;
     }
 
+    /** @return the unique id of the project */
     public int getId() {
         return id;
     }
@@ -73,6 +80,26 @@ public class SvnProject {
     /** @param version the Hibernate version */
     public void setVersion(Integer version) {
         this.version = version;
+    }
+
+    /** @return the username for svn authentication, if needed */
+    public String getUsername() {
+        return username;
+    }
+
+    /** @param username for svn authentication, if needed */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /** @return the password for svn authentication, if needed */
+    public String getPassword() {
+        return password;
+    }
+
+    /** @param password for svn authentication, if needed */
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

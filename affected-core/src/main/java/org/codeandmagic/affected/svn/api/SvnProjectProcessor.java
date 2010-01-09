@@ -19,8 +19,6 @@
 
 package org.codeandmagic.affected.svn.api;
 
-import org.codeandmagic.affected.user.User;
-
 import java.util.Set;
 
 /**
@@ -42,5 +40,5 @@ public interface SvnProjectProcessor {
      *
      * @return a set of parsed '@affects' tags found in that file
      */
-    Set<String> process(SvnProject project, User user) throws SvnException;
+    Set<String> process(SvnProject project) throws SvnException;
 }

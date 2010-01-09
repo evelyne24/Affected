@@ -22,7 +22,6 @@ package org.codeandmagic.affected.svn.impl.svnkit;
 import org.codeandmagic.affected.scanner.api.TagScanner;
 import org.codeandmagic.affected.service.api.SvnProjectService;
 import org.codeandmagic.affected.svn.api.*;
-import org.codeandmagic.affected.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 
@@ -70,19 +69,19 @@ public class SvnKitProjectProcessor implements SvnProjectProcessor {
         this.service = service;
     }
 
-    public Set<String> process(SvnProject project, User user) throws SvnException {
+    public Set<String> process(SvnProject project) throws SvnException {
         // 1# get the target revision from the svn
-        long targetVersion = versionChecker.getRemoteVersion(project, user);
+        long targetVersion = versionChecker.getRemoteVersion(project);
 
         // 2# get the modified file paths from the svn
-        Set<String> changedPaths = changeChecker.getChangedPaths(project, user, targetVersion);
+        Set<String> changedPaths = changeChecker.getChangedPaths(project, targetVersion);
 
         // 3# for each modified file, retrieve the content from the svn
         Map<String, String> fileContents = new HashMap<String, String>();
         for (String filePath : changedPaths) {
             if (filePath != null && !filePath.isEmpty()
-                    && fileTypeChecker.getFileType(project, user, filePath, targetVersion) == SvnFileType.FILE) {
-                fileContents.put(filePath, fileContentRetriever.getFileContent(project, user, filePath, targetVersion));
+                    && fileTypeChecker.getFileType(project, filePath, targetVersion) == SvnFileType.FILE) {
+                fileContents.put(filePath, fileContentRetriever.getFileContent(project, filePath, targetVersion));
             }
         }
 
