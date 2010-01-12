@@ -28,6 +28,7 @@
     <modules>
         <module>affected-core</module>
         <module>affected-web</module>
+        <module>affected-api</module>
     </modules>
 
     <properties>
