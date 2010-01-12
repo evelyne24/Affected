@@ -34,6 +34,7 @@ import java.util.List;
 @Repository
 public class UserDaoHib extends GenericDaoHib implements UserDao {
 
+    @SuppressWarnings("unchecked")
     public User get(String username) throws SvnException {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
         criteria.add(Restrictions.eq("username", username));
@@ -44,6 +45,7 @@ public class UserDaoHib extends GenericDaoHib implements UserDao {
         return results.get(0);
     }
 
+    @SuppressWarnings("unchecked")
     public List<User> getAll() {
         return sessionFactory.getCurrentSession().createCriteria(User.class).list();
     }

@@ -34,6 +34,7 @@ import java.util.List;
 @Repository
 public class SvnProjectDaoHib extends GenericDaoHib implements SvnProjectDao {
 
+    @SuppressWarnings("unchecked")
     public SvnProject get(String name) throws SvnException {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(SvnProject.class);
         criteria.add(Restrictions.eq("name", name));
@@ -44,6 +45,7 @@ public class SvnProjectDaoHib extends GenericDaoHib implements SvnProjectDao {
         return results.get(0);
     }
 
+    @SuppressWarnings("unchecked")
     public List<SvnProject> getAll() {
         return sessionFactory.getCurrentSession().createCriteria(SvnProject.class).list();
     }

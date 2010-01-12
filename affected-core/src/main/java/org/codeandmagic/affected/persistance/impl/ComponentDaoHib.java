@@ -19,39 +19,39 @@
 
 package org.codeandmagic.affected.persistance.impl;
 
-import java.util.Collection;
-import java.util.List;
-
 import org.codeandmagic.affected.component.Component;
 import org.codeandmagic.affected.persistance.api.ComponentDao;
 import org.hibernate.criterion.Restrictions;
 
-public class ComponentDaoImpl extends GenericDaoHib implements ComponentDao {
+import java.util.Collection;
+import java.util.List;
 
-	public void delete(Component component) {
-		getSession().delete(component);
-	}
+public class ComponentDaoHib extends GenericDaoHib implements ComponentDao {
 
-	public Component get(int id) {
-		return (Component) getSession().get(Component.class, id);
-	}
+    public void delete(Component component) {
+        getSession().delete(component);
+    }
 
-	@SuppressWarnings("unchecked")
-	public List<Component> getAll() {
-		return getSession().createCriteria(Component.class).list();
-	}
+    public Component get(int id) {
+        return (Component) getSession().get(Component.class, id);
+    }
 
-	public Component getByTag(String tag) {
-		return (Component) getSession().createCriteria(Component.class).add(Restrictions.eq("tag", tag)).uniqueResult();
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Component> getByTags(Collection<Component> tags) {
-		return (List<Component>) getSession().createCriteria(Component.class).add(Restrictions.in("tag", tags)).list();
-	}
+    @SuppressWarnings("unchecked")
+    public List<Component> getAll() {
+        return getSession().createCriteria(Component.class).list();
+    }
 
-	public void save(Component component) {
-		getSession().save(component);
-	}
+    public Component getByTag(String tag) {
+        return (Component) getSession().createCriteria(Component.class).add(Restrictions.eq("tag", tag)).uniqueResult();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Component> getByTags(Collection<Component> tags) {
+        return (List<Component>) getSession().createCriteria(Component.class).add(Restrictions.in("tag", tags)).list();
+    }
+
+    public void save(Component component) {
+        getSession().save(component);
+    }
 
 }

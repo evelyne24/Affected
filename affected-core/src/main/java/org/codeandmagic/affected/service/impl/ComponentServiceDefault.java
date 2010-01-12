@@ -17,20 +17,44 @@
  * along with Affected.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package org.codeandmagic.affected.service.api;
+package org.codeandmagic.affected.service.impl;
 
 import org.codeandmagic.affected.component.Component;
+import org.codeandmagic.affected.persistance.api.ComponentDao;
+import org.codeandmagic.affected.service.api.ComponentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 
 import java.util.List;
 
-public interface ComponentService {
-    public void save(Component component);
+public class ComponentServiceDefault implements ComponentService {
 
-    public void delete(Component component);
+    private ComponentDao componentDao;
 
-    public Component get(int id);
+    @Required
+    @Autowired
+    public void setComponentDao(ComponentDao componentDao) {
+        this.componentDao = componentDao;
+    }
 
-    public Component getByTag(String tag);
+    public void delete(Component component) {
+        componentDao.delete(component);
+    }
 
-    public List<Component> getAll();
+    public Component get(int id) {
+        return componentDao.get(id);
+    }
+
+    public List<Component> getAll() {
+        return componentDao.getAll();
+    }
+
+    public Component getByTag(String tag) {
+        return componentDao.getByTag(tag);
+    }
+
+    public void save(Component component) {
+        componentDao.save(component);
+    }
+
 }

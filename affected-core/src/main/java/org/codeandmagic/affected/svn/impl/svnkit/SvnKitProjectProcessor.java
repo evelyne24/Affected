@@ -79,9 +79,11 @@ public class SvnKitProjectProcessor implements SvnProjectProcessor {
         // 3# for each modified file, retrieve the content from the svn
         Map<String, String> fileContents = new HashMap<String, String>();
         for (String filePath : changedPaths) {
-            if (filePath != null && !filePath.isEmpty()
+            if (filePath != null
+                    && !filePath.isEmpty()
                     && fileTypeChecker.getFileType(project, filePath, targetVersion) == SvnFileType.FILE) {
-                fileContents.put(filePath, fileContentRetriever.getFileContent(project, filePath, targetVersion));
+                fileContents.put(filePath, fileContentRetriever.getFileContent(project, filePath,
+                        targetVersion));
             }
         }
 
@@ -99,10 +101,10 @@ public class SvnKitProjectProcessor implements SvnProjectProcessor {
         // 5# save the tags in the database
 
         // 6# change the last checked version to targetVersion
-        //project.setLastCheckedVersion(targetVersion);
+        project.setLastCheckedVersion(targetVersion);
 
         // 7# save the project
-        //service.save(project);
+        service.save(project);
 
         return tags;
     }

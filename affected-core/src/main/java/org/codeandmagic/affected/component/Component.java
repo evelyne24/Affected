@@ -22,48 +22,59 @@ package org.codeandmagic.affected.component;
 import java.util.Set;
 
 public class Component {
-	private int id;
+    private int id;
     private Integer version;
     private String prettyName;
     private String tag;
     private Set<Component> parents;
-    private Set<Component> childs;
-    
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public Integer getVersion() {
-		return version;
-	}
-	public void setVersion(Integer version) {
-		this.version = version;
-	}
-	public String getPrettyName() {
-		return prettyName;
-	}
-	public void setPrettyName(String prettyName) {
-		this.prettyName = prettyName;
-	}
-	public String getTag() {
-		return tag;
-	}
-	public void setTag(String tag) {
-		this.tag = tag;
-	}
-	public Set<Component> getParent() {
-		return parents;
-	}
-	public void setParent(Set<Component> parent) {
-		this.parents = parent;
-	}
-	public Set<Component> getChilds() {
-		return childs;
-	}
-	public void setChilds(Set<Component> childs) {
-		this.childs = childs;
-	}
-    
+    private Set<Component> children;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
+    public String getPrettyName() {
+        return prettyName;
+    }
+
+    public void setPrettyName(String prettyName) {
+        this.prettyName = prettyName;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public Set<Component> getParents() {
+        return parents;
+    }
+
+    public void setParents(Set<Component> parents) {
+        this.parents = parents;
+    }
+
+    public Set<Component> getChildren() {
+        return children;
+    }
+
+    public void setChildren(Set<Component> childs) {
+        this.children = childs;
+    }
+
 }

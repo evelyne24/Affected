@@ -30,22 +30,22 @@
             <generator class="hilo"/>
         </id>
 
-		<natural-id>
-        	<property name="tag"/>
+        <natural-id>
+            <property name="tag"/>
         </natural-id>
 
         <version name="version" unsaved-value="null"/>
 
         <property name="prettyName"/>
 
-        <set name="childs">
-        	<key column="parentId" />
-        	<many-to-many column="id" class="Component" />
+        <set name="children">
+            <key column="parentId"/>
+            <many-to-many column="id" class="Component"/>
         </set>
-        
+
         <set name="parents" inverse="true">
-        	<key column="id" />
-        	<many-to-many column="parentId" class="Component" />
+            <key column="id"/>
+            <many-to-many column="parentId" class="Component"/>
         </set>
 
     </class>
