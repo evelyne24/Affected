@@ -21,54 +21,52 @@ package org.codeandmagic.affected.service.impl;
 
 import java.util.List;
 
-import org.codeandmagic.affected.persistence.UserDao;
-import org.codeandmagic.affected.service.UserService;
+import org.codeandmagic.affected.persistence.SvnProjectDao;
+import org.codeandmagic.affected.service.SvnProjectService;
 import org.codeandmagic.affected.svn.SvnException;
-import org.codeandmagic.affected.user.User;
+import org.codeandmagic.affected.svn.SvnProject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- *
- */
 @Service
-public class UserServiceDefault implements UserService {
-	private UserDao dao;
+public class SvnProjectServiceImpl implements SvnProjectService {
+	private SvnProjectDao dao;
 
 	@Required
 	@Autowired
-	public void setDao(UserDao dao) {
+	public void setDao(SvnProjectDao dao) {
 		this.dao = dao;
 	}
 
 	@Transactional(readOnly = true)
-	public User get(String username) throws SvnException {
-		return dao.get(username);
+	public SvnProject get(String name) throws SvnException {
+		return dao.get(name);
 	}
 
 	@Transactional(readOnly = true)
-	public List<User> getAll() {
+	public List<SvnProject> getAll() {
 		return dao.getAll();
 	}
 
 	@Transactional(readOnly = false)
-	public User create(String username, String password) {
-		User user = new User();
-		user.setUsername(username);
-		user.setPassword(password);
-		save(user);
-		return user;
+	public SvnProject create(String name, String url, long lastCheckedVersion) throws SvnException {
+		SvnProject proj = new SvnProject();
+		proj.setName(name);
+		proj.setUrl(url);
+		proj.setLastCheckedVersion(lastCheckedVersion);
+		save(proj);
+		return proj;
 	}
 
 	@Transactional(readOnly = false)
-	public void save(User user) {
-		dao.save(user);
+	public void save(SvnProject project) {
+		dao.save(project);
 	}
 
 	@Transactional(readOnly = false)
-	public void delete(String username) throws SvnException {
-		dao.delete(dao.get(username));
+	public void delete(String name) throws SvnException {
+		dao.delete(dao.get(name));
 	}
 }

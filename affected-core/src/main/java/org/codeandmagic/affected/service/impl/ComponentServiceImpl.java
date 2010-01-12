@@ -27,7 +27,7 @@ import org.springframework.beans.factory.annotation.Required;
 
 import java.util.List;
 
-public class ComponentServiceDefault implements ComponentService {
+public class ComponentServiceImpl implements ComponentService {
 
     private ComponentDao componentDao;
 
