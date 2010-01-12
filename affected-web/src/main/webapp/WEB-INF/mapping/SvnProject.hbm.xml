@@ -22,7 +22,7 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="org.codeandmagic.affected.svn.api">
+<hibernate-mapping package="org.codeandmagic.affected.svn">
 
     <class name="SvnProject" table="svnproject">
 
