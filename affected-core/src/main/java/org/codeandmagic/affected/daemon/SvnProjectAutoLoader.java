@@ -21,7 +21,7 @@ package org.codeandmagic.affected.daemon;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.codeandmagic.affected.service.api.SvnProjectService;
+import org.codeandmagic.affected.service.SvnProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.context.ApplicationListener;
