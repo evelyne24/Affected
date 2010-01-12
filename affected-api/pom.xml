@@ -27,5 +27,23 @@
   <groupId>org.codeandmagic</groupId>
   <artifactId>affected-api</artifactId>
   <version>${affected.version}</version>
-  <name>Affected APi</name>
+  <name>Affected Api</name>
+  
+  <build>
+		<!-- Include java files in the jar because they're needed by gwt client for compilation -->
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+			</resource>
+		</resources>
+   </build>
 </project>

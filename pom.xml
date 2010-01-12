@@ -29,6 +29,7 @@
         <module>affected-core</module>
         <module>affected-web</module>
         <module>affected-api</module>
+        <module>affected-gwt</module>
     </modules>
 
     <properties>
@@ -55,6 +56,21 @@
     </build>
 
     <repositories>
+    	<!-- Gwt Maven Plugin -->
+    	<repository>
+    		<id>org.codehaus.mojo</id>
+    		<name>Gwt Maven Plugin Jar</name>
+    		<url>http://repository.codehaus.org/</url>
+    	</repository>
+    	
+    	<!-- Gwt-log -->
+    	<repository>
+    		<id>org.jboss.maven2</id>
+    		<name>Gwt-log Latest Jar</name>
+    		<url>http://repository.jboss.org/maven2/</url>
+    	</repository>
+    	
+    	<!-- Sqlite -->
         <repository>
             <id>org.xerial.sqlite</id>
             <name>Xerial SQLite Driver</name>
