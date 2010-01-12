@@ -19,7 +19,7 @@
 
 package org.codeandmagic.affected.service.impl;
 
-import org.codeandmagic.affected.persistance.api.UserDao;
+import org.codeandmagic.affected.persistence.api.UserDao;
 import org.codeandmagic.affected.service.api.UserService;
 import org.codeandmagic.affected.svn.api.SvnException;
 import org.codeandmagic.affected.user.User;

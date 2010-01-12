@@ -20,7 +20,7 @@
 package org.codeandmagic.affected.service.impl;
 
 import org.codeandmagic.affected.component.Component;
-import org.codeandmagic.affected.persistance.api.ComponentDao;
+import org.codeandmagic.affected.persistence.api.ComponentDao;
 import org.codeandmagic.affected.service.api.ComponentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;

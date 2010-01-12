@@ -17,11 +17,11 @@
  * along with Affected.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package org.codeandmagic.affected.persistance.impl;
+package org.codeandmagic.affected.persistence.impl;
 
-import org.codeandmagic.affected.persistance.api.SvnProjectDao;
+import org.codeandmagic.affected.persistence.api.UserDao;
 import org.codeandmagic.affected.svn.api.SvnException;
-import org.codeandmagic.affected.svn.api.SvnProject;
+import org.codeandmagic.affected.user.User;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -32,29 +32,37 @@ import java.util.List;
  *
  */
 @Repository
-public class SvnProjectDaoHib extends GenericDaoHib implements SvnProjectDao {
+public class UserDaoHib extends GenericDaoHib implements UserDao {
 
     @SuppressWarnings("unchecked")
-    public SvnProject get(String name) throws SvnException {
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(SvnProject.class);
-        criteria.add(Restrictions.eq("name", name));
-        List<SvnProject> results = criteria.list();
+    public User get(String username) throws SvnException {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
+        criteria.add(Restrictions.eq("username", username));
+        List<User> results = criteria.list();
         if (results == null || results.size() == 0) {
-            throw new SvnException("No SvnProject with name '" + name + "'");
+            throw new SvnException("No User with username '" + username + "'.");
         }
         return results.get(0);
     }
 
     @SuppressWarnings("unchecked")
-    public List<SvnProject> getAll() {
-        return sessionFactory.getCurrentSession().createCriteria(SvnProject.class).list();
+    public List<User> getAll() {
+        return sessionFactory.getCurrentSession().createCriteria(User.class).list();
     }
 
-    public void save(SvnProject project) {
-        sessionFactory.getCurrentSession().saveOrUpdate(project);
+    public User create(String username, String password) {
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        save(user);
+        return user;
     }
 
-    public void delete(SvnProject project) {
-        sessionFactory.getCurrentSession().delete(project);
+    public void save(User user) {
+        sessionFactory.getCurrentSession().saveOrUpdate(user);
+    }
+
+    public void delete(User user) {
+        sessionFactory.getCurrentSession().delete(user);
     }
 }

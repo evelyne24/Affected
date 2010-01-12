@@ -17,7 +17,7 @@
  * along with Affected.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package org.codeandmagic.affected.persistance.api;
+package org.codeandmagic.affected.persistence.api;
 
 import org.codeandmagic.affected.svn.api.SvnException;
 import org.codeandmagic.affected.svn.api.SvnProject;

@@ -17,26 +17,25 @@
  * along with Affected.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package org.codeandmagic.affected.persistance.impl;
+package org.codeandmagic.affected.persistence.api;
 
-import org.hibernate.SessionFactory;
-import org.hibernate.classic.Session;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
+import org.codeandmagic.affected.svn.api.SvnException;
+import org.codeandmagic.affected.user.User;
+
+import java.util.List;
 
 /**
  *
  */
-public class GenericDaoHib {
-    protected SessionFactory sessionFactory;
+// @affects: UserService, SvnProjectController
+public interface UserDao {
+    User get(String username) throws SvnException;
 
-    @Required
-    @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-    
-    protected Session getSession(){
-    	return this.sessionFactory.getCurrentSession();
-    }
+    List<User> getAll();
+
+    User create(String username, String password);
+
+    void save(User user);
+
+    void delete(User user);
 }

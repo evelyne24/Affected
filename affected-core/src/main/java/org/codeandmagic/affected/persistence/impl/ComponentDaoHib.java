@@ -17,10 +17,10 @@
  * along with Affected.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package org.codeandmagic.affected.persistance.impl;
+package org.codeandmagic.affected.persistence.impl;
 
 import org.codeandmagic.affected.component.Component;
-import org.codeandmagic.affected.persistance.api.ComponentDao;
+import org.codeandmagic.affected.persistence.api.ComponentDao;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.Collection;

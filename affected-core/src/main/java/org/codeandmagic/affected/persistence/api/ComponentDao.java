@@ -17,25 +17,16 @@
  * along with Affected.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package org.codeandmagic.affected.persistance.api;
-
-import org.codeandmagic.affected.svn.api.SvnException;
-import org.codeandmagic.affected.user.User;
+package org.codeandmagic.affected.persistence.api;
 
 import java.util.List;
 
-/**
- *
- */
-// @affects: UserService, SvnProjectController
-public interface UserDao {
-    User get(String username) throws SvnException;
+import org.codeandmagic.affected.component.Component;
 
-    List<User> getAll();
-
-    User create(String username, String password);
-
-    void save(User user);
-
-    void delete(User user);
+public interface ComponentDao {
+	public void save(Component component);
+	public void delete(Component component);
+	public Component get(int id);
+	public Component getByTag(String tag);
+	public List<Component> getAll();
 }

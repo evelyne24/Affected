@@ -17,16 +17,26 @@
  * along with Affected.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package org.codeandmagic.affected.persistance.api;
+package org.codeandmagic.affected.persistence.impl;
 
-import java.util.List;
+import org.hibernate.SessionFactory;
+import org.hibernate.classic.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 
-import org.codeandmagic.affected.component.Component;
+/**
+ *
+ */
+public class GenericDaoHib {
+    protected SessionFactory sessionFactory;
 
-public interface ComponentDao {
-	public void save(Component component);
-	public void delete(Component component);
-	public Component get(int id);
-	public Component getByTag(String tag);
-	public List<Component> getAll();
+    @Required
+    @Autowired
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+    
+    protected Session getSession(){
+    	return this.sessionFactory.getCurrentSession();
+    }
 }

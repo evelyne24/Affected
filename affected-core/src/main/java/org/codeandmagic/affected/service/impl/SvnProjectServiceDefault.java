@@ -19,7 +19,7 @@
 
 package org.codeandmagic.affected.service.impl;
 
-import org.codeandmagic.affected.persistance.api.SvnProjectDao;
+import org.codeandmagic.affected.persistence.api.SvnProjectDao;
 import org.codeandmagic.affected.service.api.SvnProjectService;
 import org.codeandmagic.affected.svn.api.SvnException;
 import org.codeandmagic.affected.svn.api.SvnProject;
