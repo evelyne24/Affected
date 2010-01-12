@@ -12,6 +12,12 @@
     <name>Affected Core</name>
 
     <dependencies>
+    	<dependency>
+            <groupId>org.codeandmagic</groupId>
+            <artifactId>affected-api</artifactId>
+            <version>${affected.version}</version>
+        </dependency>
+    
         <!-- JUnit -->
         <dependency>
             <groupId>junit</groupId>
