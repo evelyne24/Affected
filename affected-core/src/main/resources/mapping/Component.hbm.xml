@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ Copyright© 2010 Cristian Vrabie, Evelina Petronela Vrabie
+  ~
+  ~ This file is part of Affected.
+  ~
+  ~ Affected is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Lesser General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Affected is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Lesser General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Lesser General Public License
+  ~ along with Affected.  If not, see <http://www.gnu.org/licenses/>.
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.codeandmagic.affected.component">
+
+    <class name="Component" table="component">
+
+        <id name="id">
+            <generator class="hilo"/>
+        </id>
+
+		<natural-id>
+        	<property name="tag"/>
+        </natural-id>
+
+        <version name="version" unsaved-value="null"/>
+
+        <property name="prettyName"/>
+
+        <set name="childs">
+        	<key column="parentId" />
+        	<many-to-many column="id" class="Component" />
+        </set>
+        
+        <set name="parents" inverse="true">
+        	<key column="id" />
+        	<many-to-many column="parentId" class="Component" />
+        </set>
+
+    </class>
+
+</hibernate-mapping>
