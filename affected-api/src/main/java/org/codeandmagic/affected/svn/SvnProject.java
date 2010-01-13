@@ -19,92 +19,115 @@
 
 package org.codeandmagic.affected.svn;
 
+import java.io.Serializable;
+
 /**
- * An abstract concept representing a svn project, located on a repository at the given url.
- * The credentials for the svn authentication, if needed, are also provided.
+ * An abstract concept representing a svn project, located on a repository at
+ * the given url. The credentials for the svn authentication, if needed, are
+ * also provided.
  */
-public class SvnProject {
-    private int id;
-    private Integer version;
-    private String name;
-    private String url;
-    private long lastCheckedVersion;
-    private String username;
-    private String password;
+public class SvnProject implements Serializable {
+	private static final long serialVersionUID = -6425942064434536752L;
 
-    /** @param id  */
-    public void setId(int id) {
-        this.id = id;
-    }
+	private int id;
+	private Integer version;
+	private String name;
+	private String url;
+	private long lastCheckedVersion;
+	private String username;
+	private String password;
 
-    /** @return the unique id of the project */
-    public int getId() {
-        return id;
-    }
+	/** @param id */
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    /** @return the url of the project on the svn repository */
-    public String getUrl() {
-        return url;
-    }
+	/** @return the unique id of the project */
+	public int getId() {
+		return id;
+	}
 
-    /** @param url the url of the project on the svn repository */
-    public void setUrl(String url) {
-        this.url = url;
-    }
+	/** @return the url of the project on the svn repository */
+	public String getUrl() {
+		return url;
+	}
 
-    /** @return the version of the last processed version of the project */
-    public long getLastCheckedVersion() {
-        return lastCheckedVersion;
-    }
+	/**
+	 * @param url
+	 *            the url of the project on the svn repository
+	 */
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
-    /** @param lastCheckedVersion the version of the last processed version of the project */
-    public void setLastCheckedVersion(long lastCheckedVersion) {
-        this.lastCheckedVersion = lastCheckedVersion;
-    }
+	/** @return the version of the last processed version of the project */
+	public long getLastCheckedVersion() {
+		return lastCheckedVersion;
+	}
 
-    /** @return the unique name of the project */
-    public String getName() {
-        return name;
-    }
+	/**
+	 * @param lastCheckedVersion
+	 *            the version of the last processed version of the project
+	 */
+	public void setLastCheckedVersion(long lastCheckedVersion) {
+		this.lastCheckedVersion = lastCheckedVersion;
+	}
 
-    /** @param name the unique name of the project */
-    public void setName(String name) {
-        this.name = name;
-    }
+	/** @return the unique name of the project */
+	public String getName() {
+		return name;
+	}
 
-    /** @return the Hibernate version */
-    public Integer getVersion() {
-        return version;
-    }
+	/**
+	 * @param name
+	 *            the unique name of the project
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    /** @param version the Hibernate version */
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
+	/** @return the Hibernate version */
+	public Integer getVersion() {
+		return version;
+	}
 
-    /** @return the username for svn authentication, if needed */
-    public String getUsername() {
-        return username;
-    }
+	/**
+	 * @param version
+	 *            the Hibernate version
+	 */
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
 
-    /** @param username for svn authentication, if needed */
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	/** @return the username for svn authentication, if needed */
+	public String getUsername() {
+		return username;
+	}
 
-    /** @return the password for svn authentication, if needed */
-    public String getPassword() {
-        return password;
-    }
+	/**
+	 * @param username
+	 *            for svn authentication, if needed
+	 */
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    /** @param password for svn authentication, if needed */
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	/** @return the password for svn authentication, if needed */
+	public String getPassword() {
+		return password;
+	}
 
-    @Override
-    public String toString() {
-        return this.getClass().getSimpleName() + "@{id=" + id + ",name='" + name +
-                "',url='" + url + "',lastCheckedVer=" + lastCheckedVersion + "}";
-    }
+	/**
+	 * @param password
+	 *            for svn authentication, if needed
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return this.getClass().getName() + "@{id=" + id + ",name='" + name + "',url='" + url
+				+ "',lastCheckedVer=" + lastCheckedVersion + "}";
+	}
 }

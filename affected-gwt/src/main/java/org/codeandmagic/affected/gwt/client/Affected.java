@@ -19,9 +19,14 @@
 
 package org.codeandmagic.affected.gwt.client;
 
+import java.util.Set;
+
+import org.codeandmagic.affected.component.Component;
+import org.codeandmagic.affected.gwt.client.component.ComponentUi;
+
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.dev.util.collect.HashSet;
+import com.google.gwt.dom.client.Document;
 
 public class Affected implements EntryPoint {
 
@@ -29,7 +34,28 @@ public class Affected implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
+		// test
+		Component parent = new Component();
+		parent.setId(1);
+		parent.setPrettyName("Parent");
+		parent.setTag("parent");
 
-		RootPanel.get().add(new Label("hello gwt!"));
+		Component child1 = new Component();
+		child1.setId(1);
+		child1.setPrettyName("Child1");
+		child1.setTag("child1");
+
+		Component child2 = new Component();
+		child2.setId(1);
+		child2.setPrettyName("Child2");
+		child2.setTag("child2");
+
+		Set<Component> children = new HashSet<Component>();
+		children.add(child1);
+		children.add(child2);
+
+		parent.setChildren(children);
+
+		Document.get().appendChild(new ComponentUi(parent).getElement());
 	}
 }

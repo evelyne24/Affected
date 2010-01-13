@@ -19,45 +19,49 @@
 
 package org.codeandmagic.affected.user;
 
+import java.io.Serializable;
+
 /**
  * Represents an user with an account on the svn, with access to an
  * {@link org.codeandmagic.affected.svn.api.SvnProject}
  */
-public class User {
-    private int id;
-    private Integer version;
-    private String username;
-    private String password;
+public class User implements Serializable {
+	private static final long serialVersionUID = 1387255460042337739L;
 
-    public int getId() {
-        return id;
-    }
+	private int id;
+	private Integer version;
+	private String username;
+	private String password;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public Integer getVersion() {
-        return version;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
+	public Integer getVersion() {
+		return version;
+	}
 
-    public String getUsername() {
-        return username;
-    }
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 }

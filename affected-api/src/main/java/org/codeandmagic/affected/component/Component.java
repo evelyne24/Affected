@@ -19,62 +19,70 @@
 
 package org.codeandmagic.affected.component;
 
+import java.io.Serializable;
 import java.util.Set;
 
-public class Component {
-    private int id;
-    private Integer version;
-    private String prettyName;
-    private String tag;
-    private Set<Component> parents;
-    private Set<Component> children;
+/**
+ * A Component is an abstract concept of an entity monitored for svn changes
+ * through its tag. The linked components (parents or children) can also suffer
+ * changes and should be monitored, if this component changes.
+ */
+public class Component implements Serializable {
+	private static final long serialVersionUID = 4883913119766955510L;
 
-    public int getId() {
-        return id;
-    }
+	private int id;
+	private Integer version;
+	private String prettyName;
+	private String tag;
+	private Set<Component> parents;
+	private Set<Component> children;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public Integer getVersion() {
-        return version;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
+	public Integer getVersion() {
+		return version;
+	}
 
-    public String getPrettyName() {
-        return prettyName;
-    }
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
 
-    public void setPrettyName(String prettyName) {
-        this.prettyName = prettyName;
-    }
+	public String getPrettyName() {
+		return prettyName;
+	}
 
-    public String getTag() {
-        return tag;
-    }
+	public void setPrettyName(String prettyName) {
+		this.prettyName = prettyName;
+	}
 
-    public void setTag(String tag) {
-        this.tag = tag;
-    }
+	public String getTag() {
+		return tag;
+	}
 
-    public Set<Component> getParents() {
-        return parents;
-    }
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
 
-    public void setParents(Set<Component> parents) {
-        this.parents = parents;
-    }
+	public Set<Component> getParents() {
+		return parents;
+	}
 
-    public Set<Component> getChildren() {
-        return children;
-    }
+	public void setParents(Set<Component> parents) {
+		this.parents = parents;
+	}
 
-    public void setChildren(Set<Component> childs) {
-        this.children = childs;
-    }
+	public Set<Component> getChildren() {
+		return children;
+	}
+
+	public void setChildren(Set<Component> children) {
+		this.children = children;
+	}
 
 }
