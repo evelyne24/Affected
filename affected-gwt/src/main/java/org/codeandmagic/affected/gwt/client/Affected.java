@@ -19,13 +19,13 @@
 
 package org.codeandmagic.affected.gwt.client;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.codeandmagic.affected.component.Component;
 import org.codeandmagic.affected.gwt.client.component.ComponentUi;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.dev.util.collect.HashSet;
 import com.google.gwt.dom.client.Document;
 
 public class Affected implements EntryPoint {
