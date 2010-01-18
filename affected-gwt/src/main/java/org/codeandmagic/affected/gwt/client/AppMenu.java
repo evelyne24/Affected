@@ -17,52 +17,43 @@
  * along with Affected.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package org.codeandmagic.affected.gwt.client.component;
+package org.codeandmagic.affected.gwt.client;
 
-import org.codeandmagic.affected.component.Component;
+import org.codeandmagic.affected.gwt.client.component.CreateComponentDialog;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.SpanElement;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ComponentUi extends Composite {
-	// affected data
-	private Component component;
+public class AppMenu extends Composite {
 
-	// gwt data
-	private static ComponentUiUiBinder uiBinder = GWT.create(ComponentUiUiBinder.class);
+	private static AppMenuUiBinder uiBinder = GWT.create(AppMenuUiBinder.class);
 
-	interface ComponentUiUiBinder extends UiBinder<Widget, ComponentUi> {}
+	interface AppMenuUiBinder extends UiBinder<Widget, AppMenu> {}
 
-	@UiField SpanElement prettyName;
+	@UiField Anchor createComponent;
+	@UiField Anchor deleteComponent;
 
-	public ComponentUi(Component component) {
+	public AppMenu() {
 		initWidget(uiBinder.createAndBindUi(this));
-		this.component = component;
-		init();
-
 	}
 
-	public void init() {
-		prettyName.setInnerText(component.getPrettyName());
+	@UiHandler("createComponent") void onCreateComponentClicked(ClickEvent event) {
+		// show create dialog
+		CreateComponentDialog dialog = new CreateComponentDialog();
+		dialog.show();
+		dialog.center();
 	}
 
-	public Component getComponent() {
-		return component;
+	@UiHandler("deleteComponent") void onDeleteComponentClicked(ClickEvent event) {
+		// show delete dialog
+		Window.alert("Delete component");
 	}
 
-	public void setComponent(Component component) {
-		this.component = component;
-	}
-
-	public SpanElement getPrettyName() {
-		return prettyName;
-	}
-
-	public void setPrettyName(SpanElement name) {
-		this.prettyName = name;
-	}
 }

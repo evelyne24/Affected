@@ -19,50 +19,49 @@
 
 package org.codeandmagic.affected.gwt.client.component;
 
-import org.codeandmagic.affected.component.Component;
-
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.SpanElement;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.TextBox;
 
-public class ComponentUi extends Composite {
-	// affected data
-	private Component component;
+public class CreateComponentDialog extends DialogBox {
 
-	// gwt data
-	private static ComponentUiUiBinder uiBinder = GWT.create(ComponentUiUiBinder.class);
+	private static CreateComponentDialogUiBinder uiBinder = GWT
+			.create(CreateComponentDialogUiBinder.class);
 
-	interface ComponentUiUiBinder extends UiBinder<Widget, ComponentUi> {}
+	interface CreateComponentDialogUiBinder extends UiBinder<HTMLPanel, CreateComponentDialog> {}
 
-	@UiField SpanElement prettyName;
+	@UiField TextBox name;
+	@UiField TextBox tag;
+	@UiField Button cancel;
+	@UiField Button ok;
 
-	public ComponentUi(Component component) {
-		initWidget(uiBinder.createAndBindUi(this));
-		this.component = component;
-		init();
+	public CreateComponentDialog() {
+		setWidget(uiBinder.createAndBindUi(this));
+		// set dialog caption
+		setText("Create a Component");
+
+		setAnimationEnabled(true);
+		setGlassEnabled(true);
+	}
+
+	@UiHandler("cancel") void onCancelClicked(ClickEvent event) {
+		hide();
+	}
+
+	@UiHandler("ok") void onOkClicked(ClickEvent event) {
+		createComponent();
+	}
+
+	private void createComponent() {
+
+	// notify the drawing area to insert a new component with the given details
 
 	}
 
-	public void init() {
-		prettyName.setInnerText(component.getPrettyName());
-	}
-
-	public Component getComponent() {
-		return component;
-	}
-
-	public void setComponent(Component component) {
-		this.component = component;
-	}
-
-	public SpanElement getPrettyName() {
-		return prettyName;
-	}
-
-	public void setPrettyName(SpanElement name) {
-		this.prettyName = name;
-	}
 }

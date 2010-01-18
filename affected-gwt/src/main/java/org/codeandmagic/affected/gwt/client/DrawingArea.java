@@ -17,52 +17,30 @@
  * along with Affected.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package org.codeandmagic.affected.gwt.client.component;
+package org.codeandmagic.affected.gwt.client;
 
-import org.codeandmagic.affected.component.Component;
+import org.codeandmagic.affected.gwt.client.component.ComponentUi;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ComponentUi extends Composite {
-	// affected data
-	private Component component;
+public class DrawingArea extends Composite {
 
-	// gwt data
-	private static ComponentUiUiBinder uiBinder = GWT.create(ComponentUiUiBinder.class);
+	private static DrawingAreaUiBinder uiBinder = GWT.create(DrawingAreaUiBinder.class);
 
-	interface ComponentUiUiBinder extends UiBinder<Widget, ComponentUi> {}
+	interface DrawingAreaUiBinder extends UiBinder<Widget, DrawingArea> {}
 
-	@UiField SpanElement prettyName;
-
-	public ComponentUi(Component component) {
+	public DrawingArea() {
 		initWidget(uiBinder.createAndBindUi(this));
-		this.component = component;
-		init();
-
 	}
 
-	public void init() {
-		prettyName.setInnerText(component.getPrettyName());
-	}
+	@UiField AbsolutePanel canvas;
 
-	public Component getComponent() {
-		return component;
-	}
-
-	public void setComponent(Component component) {
-		this.component = component;
-	}
-
-	public SpanElement getPrettyName() {
-		return prettyName;
-	}
-
-	public void setPrettyName(SpanElement name) {
-		this.prettyName = name;
+	public void addComponent(ComponentUi compUi) {
+		canvas.add(compUi, 10, 40);
 	}
 }

@@ -18,22 +18,33 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
-<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui">
-
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
-		.component {
-			width: 200px;
-			height: 200px;
-			border: 1px solid #306084;
-			background-color: #4da4e2;
+		.appMenu {
+			width: 129px;
+			height: 500px;
+			background-color: #e8f2fe;
+			border-right: 1px solid gray;
 		}
-		.prettyName {
-			font-weight: bold;
-		}
+		.item {
+			margin: 0px;
+			padding: 0px;
+			width: 100%;
+	     	color: #720a13;
+	     	font-weight: bold;
+		}	
 	</ui:style>
-		
-	<g:HTMLPanel styleName="{style.component}">
-		<span class="{style.prettyName}" ui:field="prettyName" />
+	
+	<g:HTMLPanel>
+		<div class="{style.appMenu}">
+			<div>Menu</div>
+			<div>
+				<ul style="padding:0px;margin:0px">
+					<li style="list-style-type:none"><g:Anchor styleName="{style.item}" href="javascript:;" ui:field="createComponent">Create Component</g:Anchor></li>
+					<li style="list-style-type:none"><g:Anchor styleName="{style.item}" href="javascript:;" ui:field="deleteComponent">Delete Component</g:Anchor></li>
+				</ul>
+			</div>
+		</div>
 	</g:HTMLPanel>
+	
 </ui:UiBinder> 

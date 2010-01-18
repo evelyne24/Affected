@@ -19,43 +19,33 @@
 
 package org.codeandmagic.affected.gwt.client;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.codeandmagic.affected.component.Component;
 import org.codeandmagic.affected.gwt.client.component.ComponentUi;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.dom.client.Document;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.RootLayoutPanel;
 
 public class Affected implements EntryPoint {
 
-	/**
-	 * This is the entry point method.
-	 */
+	private static AffectedUiBinder uiBinder = GWT.create(AffectedUiBinder.class);
+
+	interface AffectedUiBinder extends UiBinder<HorizontalPanel, Affected> {}
+
+	@UiField AppMenu appMenu;
+	@UiField DrawingArea drawingArea;
+
 	public void onModuleLoad() {
-		// test
-		Component parent = new Component();
-		parent.setId(1);
-		parent.setPrettyName("Parent");
-		parent.setTag("parent");
+		// Create the ui defined in Affected.ui.xml
+		HorizontalPanel mainWidget = uiBinder.createAndBindUi(this);
+		RootLayoutPanel.get().add(mainWidget);
 
-		Component child1 = new Component();
-		child1.setId(1);
-		child1.setPrettyName("Child1");
-		child1.setTag("child1");
-
-		Component child2 = new Component();
-		child2.setId(1);
-		child2.setPrettyName("Child2");
-		child2.setTag("child2");
-
-		Set<Component> children = new HashSet<Component>();
-		children.add(child1);
-		children.add(child2);
-
-		parent.setChildren(children);
-
-		Document.get().appendChild(new ComponentUi(parent).getElement());
+		Component test = new Component();
+		test.setTag("tag");
+		test.setPrettyName("test");
+		drawingArea.addComponent(new ComponentUi(test));
 	}
 }
