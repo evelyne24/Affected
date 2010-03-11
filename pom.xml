@@ -71,6 +71,13 @@
     		<url>http://repository.jboss.org/maven2/</url>
     	</repository>
     	
+    	<!-- SmartGwt -->
+    	<repository>
+    		<id>com.smartgwt</id>
+    		<name>SmartGwt</name>
+    		<url>http://www.smartclient.com/maven2/</url>
+    	</repository>
+    	
     	<!-- Sqlite -->
         <repository>
             <id>org.xerial.sqlite</id>

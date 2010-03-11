@@ -35,6 +35,9 @@
 
   <!-- Other module inherits                                      -->
   <inherits name="org.codeandmagic.affected.AffectedApi" />
+  
+   <!-- Add SmartGWT -->
+   <inherits name="com.smartgwt.SmartGwt"/>
 
   <!-- Specify the entry point class.                         -->
   <entry-point class='org.codeandmagic.affected.gwt.client.Affected'/>

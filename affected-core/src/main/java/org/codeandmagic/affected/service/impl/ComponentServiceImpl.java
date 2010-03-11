@@ -27,6 +27,7 @@ import org.codeandmagic.affected.service.ComponentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ComponentServiceImpl implements ComponentService {
@@ -38,24 +39,28 @@ public class ComponentServiceImpl implements ComponentService {
 		this.componentDao = componentDao;
 	}
 
-	public void delete(Component component) {
-		componentDao.delete(component);
-	}
-
+	@Transactional(readOnly = true)
 	public Component get(int id) {
 		return componentDao.get(id);
 	}
 
+	@Transactional(readOnly = true)
 	public List<Component> getAll() {
 		return componentDao.getAll();
 	}
 
+	@Transactional(readOnly = true)
 	public Component getByTag(String tag) {
 		return componentDao.getByTag(tag);
 	}
 
+	@Transactional(readOnly = false)
 	public void save(Component component) {
 		componentDao.save(component);
 	}
 
+	@Transactional(readOnly = false)
+	public void delete(Component component) {
+		componentDao.delete(component);
+	}
 }

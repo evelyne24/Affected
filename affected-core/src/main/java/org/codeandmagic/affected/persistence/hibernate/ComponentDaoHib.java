@@ -30,10 +30,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ComponentDaoHib extends GenericDaoHib implements ComponentDao {
 
-	public void delete(Component component) {
-		getSession().delete(component);
-	}
-
 	public Component get(int id) {
 		return (Component) getSession().get(Component.class, id);
 	}
@@ -50,12 +46,15 @@ public class ComponentDaoHib extends GenericDaoHib implements ComponentDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Component> getByTags(Collection<Component> tags) {
-		return getSession().createCriteria(Component.class).add(Restrictions.in("tag", tags))
-				.list();
+		return getSession().createCriteria(Component.class).add(
+				Restrictions.in("tag", tags)).list();
 	}
 
 	public void save(Component component) {
 		getSession().save(component);
 	}
 
+	public void delete(Component component) {
+		getSession().delete(component);
+	}
 }

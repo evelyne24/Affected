@@ -38,7 +38,7 @@
 
         <property name="prettyName"/>
 
-        <set name="children">
+        <set name="children" cascade="all-delete-orphan">
             <key column="parentId"/>
             <many-to-many column="id" class="Component"/>
         </set>

@@ -19,9 +19,6 @@
 
 package org.codeandmagic.affected.gwt.client;
 
-import org.codeandmagic.affected.component.Component;
-import org.codeandmagic.affected.gwt.client.component.ComponentUi;
-
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -31,21 +28,26 @@ import com.google.gwt.user.client.ui.RootLayoutPanel;
 
 public class Affected implements EntryPoint {
 
-	private static AffectedUiBinder uiBinder = GWT.create(AffectedUiBinder.class);
+	private static AffectedUiBinder uiBinder = GWT
+			.create(AffectedUiBinder.class);
 
-	interface AffectedUiBinder extends UiBinder<HorizontalPanel, Affected> {}
+	interface AffectedUiBinder extends UiBinder<HorizontalPanel, Affected> {
+	}
 
-	@UiField AppMenu appMenu;
-	@UiField DrawingArea drawingArea;
+	@UiField
+	AppMenu appMenu;
+	@UiField
+	DrawingArea drawingArea;
 
 	public void onModuleLoad() {
 		// Create the ui defined in Affected.ui.xml
 		HorizontalPanel mainWidget = uiBinder.createAndBindUi(this);
 		RootLayoutPanel.get().add(mainWidget);
 
-		Component test = new Component();
-		test.setTag("tag");
-		test.setPrettyName("test");
-		drawingArea.addComponent(new ComponentUi(test));
+		/*
+		  Component test = new Component(); test.setTag("tag");
+		  test.setPrettyName("test"); drawingArea.addComponent(new
+		  ComponentUi(test));
+		 */
 	}
 }
