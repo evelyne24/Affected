@@ -16,20 +16,31 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Affected.  If not, see <http://www.gnu.org/licenses/>
  ******************************************************************************/
-package org.codeandmagic.affected.persistence;
+package org.codeandmagic.affected.gwt.rpc.proxy;
 
-import java.util.List;
+import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
-import org.codeandmagic.affected.svn.SvnException;
-import org.codeandmagic.affected.svn.SvnProject;
+public abstract class AbstractServiceProxy {
 
-// @affects: SvnProjectService, SvnProjectController
-public interface SvnProjectDao {
-	SvnProject get(String name) throws SvnException;
+	protected final static String prefix = "/affected/rpc/";
+	protected final static String sufix = ".gwt";
 
-	List<SvnProject> getAll();
+	private AbstractServiceProxy() {
+	}
 
-	boolean save(SvnProject project);
+	public static void initService(Object service) {
+		// sets the url = prefix + service class name +suffix
+		ServiceDefTarget target = (ServiceDefTarget) service;
+		String serviceName = service.getClass().getName();
+		StringBuffer sb = new StringBuffer();
+		sb.append(prefix);
 
-	boolean delete(SvnProject project);
+		serviceName = serviceName.substring(serviceName.lastIndexOf('.') + 1,
+				serviceName.lastIndexOf("RpcService"));
+		sb.append(serviceName.substring(0, 1).toLowerCase());
+		sb.append(serviceName.substring(1));
+
+		sb.append(sufix);
+		target.setServiceEntryPoint(sb.toString());
+	}
 }

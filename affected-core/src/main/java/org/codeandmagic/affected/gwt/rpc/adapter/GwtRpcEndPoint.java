@@ -16,20 +16,15 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Affected.  If not, see <http://www.gnu.org/licenses/>
  ******************************************************************************/
-package org.codeandmagic.affected.persistence;
+package org.codeandmagic.affected.gwt.rpc.adapter;
 
-import java.util.List;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-import org.codeandmagic.affected.svn.SvnException;
-import org.codeandmagic.affected.svn.SvnProject;
-
-// @affects: SvnProjectService, SvnProjectController
-public interface SvnProjectDao {
-	SvnProject get(String name) throws SvnException;
-
-	List<SvnProject> getAll();
-
-	boolean save(SvnProject project);
-
-	boolean delete(SvnProject project);
+@Target( { ElementType.TYPE })
+@Retention(RetentionPolicy.RUNTIME)
+public @interface GwtRpcEndPoint {
+	String value() default "";
 }

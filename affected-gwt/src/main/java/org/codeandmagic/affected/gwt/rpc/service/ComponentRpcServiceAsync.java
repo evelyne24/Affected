@@ -16,20 +16,22 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Affected.  If not, see <http://www.gnu.org/licenses/>
  ******************************************************************************/
-package org.codeandmagic.affected.persistence;
+package org.codeandmagic.affected.gwt.rpc.service;
 
 import java.util.List;
 
-import org.codeandmagic.affected.svn.SvnException;
-import org.codeandmagic.affected.svn.SvnProject;
+import org.codeandmagic.affected.component.Component;
 
-// @affects: SvnProjectService, SvnProjectController
-public interface SvnProjectDao {
-	SvnProject get(String name) throws SvnException;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 
-	List<SvnProject> getAll();
+public interface ComponentRpcServiceAsync {
+	void get(int id, AsyncCallback<Component> callback);
 
-	boolean save(SvnProject project);
+	void getByTag(String tag, AsyncCallback<Component> callback);
 
-	boolean delete(SvnProject project);
+	void getAll(AsyncCallback<List<Component>> callback);
+
+	void save(Component component, AsyncCallback<Boolean> callback);
+
+	void delete(Component component, AsyncCallback<Boolean> callback);
 }

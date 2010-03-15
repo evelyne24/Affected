@@ -16,20 +16,36 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Affected.  If not, see <http://www.gnu.org/licenses/>
  ******************************************************************************/
-package org.codeandmagic.affected.persistence;
+package org.codeandmagic.affected.gwt.rpc.adapter;
 
-import java.util.List;
+import org.springframework.util.StringUtils;
 
-import org.codeandmagic.affected.svn.SvnException;
-import org.codeandmagic.affected.svn.SvnProject;
+/**
+ * Spring HandlerMapping that detects beans annotated with @GwtRpcEndPoint and
+ * registers their URLs.
+ * 
+ */
+public class GwtHandlerMapping extends AbstractRpcHandlerMapping {
 
-// @affects: SvnProjectService, SvnProjectController
-public interface SvnProjectDao {
-	SvnProject get(String name) throws SvnException;
+	public GwtHandlerMapping() {
+		this.suffix = ".gwt";
+	}
 
-	List<SvnProject> getAll();
+	@Override
+	protected final String[] determineUrlsForHandler(String beanName) {
+		String[] urls = new String[0];
 
-	boolean save(SvnProject project);
+		Class<?> handlerType = getApplicationContext().getType(beanName);
+		if (handlerType.isAnnotationPresent(GwtRpcEndPoint.class)) {
+			GwtRpcEndPoint endPointAnnotation = handlerType
+					.getAnnotation(GwtRpcEndPoint.class);
+			if (StringUtils.hasText(endPointAnnotation.value())) {
+				urls = new String[] { endPointAnnotation.value() };
+			} else {
+				urls = buildUrls(handlerType, beanName);
+			}
+		}
 
-	boolean delete(SvnProject project);
+		return urls;
+	}
 }

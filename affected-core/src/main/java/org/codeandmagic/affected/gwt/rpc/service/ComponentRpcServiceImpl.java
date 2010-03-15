@@ -16,34 +16,44 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Affected.  If not, see <http://www.gnu.org/licenses/>
  ******************************************************************************/
-package org.codeandmagic.affected.web.controller;
+package org.codeandmagic.affected.gwt.rpc.service;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
-import org.codeandmagic.affected.service.SvnProjectService;
+import org.codeandmagic.affected.component.Component;
+import org.codeandmagic.affected.gwt.rpc.adapter.GwtRpcEndPoint;
+import org.codeandmagic.affected.service.ComponentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
-@Controller
-public class IndexController {
-	private SvnProjectService svnProjectService;
+@GwtRpcEndPoint
+@org.springframework.stereotype.Component
+public class ComponentRpcServiceImpl implements ComponentRpcService {
+	private ComponentService service;
 
 	@Required
 	@Autowired
-	public void setSvnProjectService(SvnProjectService svnProjectService) {
-		this.svnProjectService = svnProjectService;
+	public void setService(ComponentService service) {
+		this.service = service;
 	}
 
-	@RequestMapping("/index-simple")
-	public ModelAndView indexSimple(HttpServletRequest request, HttpServletResponse response,
-			HttpSession session) {
-		ModelAndView mv = new ModelAndView("index-simple");
-		mv.addObject("projects", this.svnProjectService.getAll());
-		return mv;
+	public boolean delete(Component component) {
+		return service.delete(component);
+	}
+
+	public Component get(int id) {
+		return service.get(id);
+	}
+
+	public List<Component> getAll() {
+		return service.getAll();
+	}
+
+	public Component getByTag(String tag) {
+		return service.getByTag(tag);
+	}
+
+	public boolean save(Component component) {
+		return service.save(component);
 	}
 }

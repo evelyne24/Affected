@@ -18,31 +18,39 @@
  ~ along with Affected.  If not, see <http://www.gnu.org/licenses/>.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
-<module rename-to='affected'>
-
+<module rename-to="affected">
   <!-- Inherit the core Web Toolkit stuff.                        -->
-  <inherits name='com.google.gwt.user.User'/>
-  
+  <inherits name="com.google.gwt.user.User"/>  
   <inherits name="com.google.gwt.json.JSON" />
   <inherits name="com.google.gwt.http.HTTP" />
-  <inherits name="com.google.gwt.i18n.I18N" />
-  
-  <inherits name="com.google.gwt.resources.Resources" />
-  
-  <inherits name='com.google.gwt.user.theme.standard.Standard'/>
-  <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
-  <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
+  <inherits name="com.google.gwt.i18n.I18N" />  
+  <inherits name="com.google.gwt.resources.Resources" />  
+  <inherits name="com.google.gwt.user.theme.standard.Standard" />
 
   <!-- Other module inherits                                      -->
   <inherits name="org.codeandmagic.affected.AffectedApi" />
   
-   <!-- Add SmartGWT -->
-   <inherits name="com.smartgwt.SmartGwt"/>
+  <!-- SmartGWT -->
+  <inherits name="com.smartgwt.SmartGwt" />
+   
+  <!-- Gwt-Log -->
+  <inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG" />
+  
+  <!-- Loggers Enabled by default -->
+  <set-property name="log_ConsoleLogger" value="DISABLED" />
+  <set-property name="log_DivLogger" value="DISABLED" />
+  <set-property name="log_FirebugLogger" value="DISABLED" />
+  <set-property name="log_GWTLogger" value="ENABLED" />
+  <set-property name="log_SystemLogger" value="DISABLED" />
 
-  <!-- Specify the entry point class.                         -->
-  <entry-point class='org.codeandmagic.affected.gwt.client.Affected'/>
+  <!-- Loggers Disabled by default -->
+  <set-property name="log_RemoteLogger" value="DISABLED" />
+  <set-property name="log_WindowLogger" value="DISABLED" /> 
+
+  <!-- Specify the entry point class.                             -->
+  <entry-point class="org.codeandmagic.affected.gwt.client.Affected" />
 
   <!-- Specify the paths for translatable code                    -->
-  <source path='client'/>
+  <source path="client" />
 
 </module>
