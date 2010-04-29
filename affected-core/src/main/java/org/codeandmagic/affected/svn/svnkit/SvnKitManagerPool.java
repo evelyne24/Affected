@@ -1,21 +1,3 @@
-/*******************************************************************************
- * Copyright© 2010 Cristian Vrabie, Evelina Petronela Vrabie
- *   
- * This file is part of Affected.
- *   
- * Affected is free software: you can redistribute it and/or modify 
- * it under the terms of the GNU Lesser General Public License as published by 
- * the Free Software Foundation, either version 3 of the License, 
- * or (at your option) any later version.
- *   
- * Affected is distributed in the hope that it will be useful, 
- * but WITHOUT ANY WARRANTY; without even the implied   warranty of 
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
- * GNU Lesser General Public License for more details.
- *   
- * You should have received a copy of the GNU Lesser General Public License
- * along with Affected.  If not, see <http://www.gnu.org/licenses/>
- ******************************************************************************/
 package org.codeandmagic.affected.svn.svnkit;
 
 import java.util.HashMap;
@@ -41,7 +23,8 @@ import org.tmatesoft.svn.core.wc.SVNWCUtil;
  * managers and svn repositories used for processing with SvnKit
  */
 public class SvnKitManagerPool {
-	private final DefaultSVNOptions defaultOpts = SVNWCUtil.createDefaultOptions(false);
+	private final DefaultSVNOptions defaultOpts = SVNWCUtil
+			.createDefaultOptions(false);
 
 	private final Map<String, SVNClientManager> clientManagers = new HashMap<String, SVNClientManager>();
 	private final HashMap<String, SVNRepository> repositories = new HashMap<String, SVNRepository>();
@@ -65,43 +48,49 @@ public class SvnKitManagerPool {
 
 	private void initClientManager(String url, String username, String password) {
 		// 1# instantiate a new object of type SVNClientManager and
-		SVNClientManager manager = SVNClientManager.newInstance(defaultOpts, username, password);
-		ISVNAuthenticationManager authManager = SVNWCUtil.createDefaultAuthenticationManager(
+		SVNClientManager manager = SVNClientManager.newInstance(defaultOpts,
 				username, password);
+		ISVNAuthenticationManager authManager = SVNWCUtil
+				.createDefaultAuthenticationManager(username, password);
 		manager.setAuthenticationManager(authManager);
 
 		// 2# add the client manager to the pool, for later use
 		clientManagers.put(url, manager);
 	}
 
-	private void initRepository(String url, String username, String password) throws SvnException {
+	private void initRepository(String url, String username, String password)
+			throws SvnException {
 		try {
 			// 1# instantiate a new object of type SVNRepository
-			SVNRepository repo = SVNRepositoryFactory.create(SVNURL.parseURIDecoded(url));
-			ISVNAuthenticationManager authManager = SVNWCUtil.createDefaultAuthenticationManager(
-					username, password);
+			SVNRepository repo = SVNRepositoryFactory.create(SVNURL
+					.parseURIDecoded(url));
+			ISVNAuthenticationManager authManager = SVNWCUtil
+					.createDefaultAuthenticationManager(username, password);
 			repo.setAuthenticationManager(authManager);
 
 			// 2# add the repository to the pool, for later use
 			repositories.put(url, repo);
 
-		}
-		catch (SVNException e) {
-			throw new SvnException("Could not parse the url of the project '" + url + "'", e);
+		} catch (SVNException e) {
+			throw new SvnException("Could not parse the url of the project '"
+					+ url + "'", e);
 		}
 	}
 
 	public SVNClientManager getSvnManager(SvnProject project) {
 		if (!clientManagers.containsKey(project.getUrl())) {
-			initClientManager(project.getUrl(), project.getUsername(), project.getPassword());
+			initClientManager(project.getUrl(), project.getUsername(), project
+					.getPassword());
 		}
 
 		return clientManagers.get(project.getUrl());
 	}
 
-	public SVNRepository getSvnRepository(SvnProject project) throws SvnException {
+	public SVNRepository getSvnRepository(SvnProject project)
+			throws SvnException {
 		if (!repositories.containsKey(project.getUrl())) {
-			initRepository(project.getUrl(), project.getUsername(), project.getPassword());
+			initRepository(project.getUrl(), project.getUsername(), project
+					.getPassword());
 		}
 
 		return repositories.get(project.getUrl());
