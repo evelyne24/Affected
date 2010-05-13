@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Create Component</title>
+	<script language="javascript">
+		function check(chk) {
+			if(chk.checked == 1) {
+				document.getElementById("parentId").style.visibility = 'hidden';
+			}
+			else {
+				document.getElementById("parentId").style.visibility = 'visible';
+			}			
+		}
+	</script>
+</head>
+<body>
+    <form action="create.do" method="post">
+    	<table>
+    		<tr><td><label for="prettyName">Pretty Name: </label></td>
+				<td><input type="text" name="prettyName"></td></tr>
+			<tr><td><label for="tag">Tag: </label></td>
+    			<td><input type="text" name="tag"></td></tr>
+    		<tr><td><label for="project">Project: </label></td>
+        		<td><select id="projectId" name="projectId">
+        			#foreach($proj in $!projects)
+        				<option value="$proj.id">$Display.capitalize($proj.name)</option>
+        			#end
+					</select></td></tr>
+    		<tr><td><label for="parent">Parent component: </label></td>
+				<td><input type="checkbox" name="hasparent" onclick="check(hasparent)">No parent &nbsp;
+        		<select id="parentId" name="parentId">
+        			#foreach($c in $!components)
+                        <option value="$c.id">$c.prettyName</option>
+        			#end
+                </select></td></tr>
+			<tr><td colspan="2"><input type="submit" value="Create"></td></tr>
+    	</table>
+    </form>
+</body>

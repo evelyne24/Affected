@@ -1,0 +1,16 @@
+<p>Component <b>$Display.capitalize($comp.prettyName)</b></p>
+<p>Tag "$!comp.tag" </p>
+<p>Children
+    <ul>
+		#foreach($c in $!comp.children)
+			<li><a href="$Link.contextPath/component/view.do?id=$c.id">$Display.capitalize($c.prettyName)</a></li>
+		#end
+    </ul>
+</p>
+<p> Parents
+	<ul>
+		#foreach($c in $!comp.parents)
+			<li><a href="$Link.contextPath/component/view.do?id=$c.id">$Display.capitalize($c.prettyName)</a></li>
+		#end
+    </ul>
+</p>
