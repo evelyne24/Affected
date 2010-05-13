@@ -12,7 +12,11 @@
     <version>${affected.version}</version>
     <name>Affected Core</name>
 
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- DEPENDENCIES                                               -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <dependencies>
+    	<!-- Affected Api -->
     	<dependency>
             <groupId>org.codeandmagic</groupId>
             <artifactId>affected-api</artifactId>
@@ -96,8 +100,7 @@
     		  	<artifactId>hibernate</artifactId>
     		  </exclusion>
     		</exclusions>
-		</dependency>
-				
+		</dependency>				
 
         <!-- Hibernate -->
         <dependency>

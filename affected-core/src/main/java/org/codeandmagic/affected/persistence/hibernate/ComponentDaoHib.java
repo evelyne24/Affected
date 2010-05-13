@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.codeandmagic.affected.component.Component;
 import org.codeandmagic.affected.persistence.ComponentDao;
-import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -32,21 +31,11 @@ public class ComponentDaoHib extends GenericDaoHib implements ComponentDao {
 				Restrictions.in("tag", tags)).list();
 	}
 
-	public boolean save(Component component) {
-		try {
-			getSession().save(component);
-			return true;
-		} catch (HibernateException e) {
-			return false;
-		}
+	public void save(Component component) {
+		getSession().saveOrUpdate(component);
 	}
 
-	public boolean delete(Component component) {
-		try {
-			getSession().delete(component);
-			return true;
-		} catch (HibernateException e) {
-			return false;
-		}
+	public void delete(Component component) {
+		getSession().delete(component);
 	}
 }

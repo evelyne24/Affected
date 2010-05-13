@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.codeandmagic.affected.persistence.SvnProjectDao;
 import org.codeandmagic.affected.service.SvnProjectService;
-import org.codeandmagic.affected.svn.SvnException;
 import org.codeandmagic.affected.svn.SvnProject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
@@ -22,8 +21,8 @@ public class SvnProjectServiceImpl implements SvnProjectService {
 	}
 
 	@Transactional(readOnly = true)
-	public SvnProject get(String name) throws SvnException {
-		return dao.get(name);
+	public SvnProject get(int id) {
+		return dao.get(id);
 	}
 
 	@Transactional(readOnly = true)
@@ -32,8 +31,7 @@ public class SvnProjectServiceImpl implements SvnProjectService {
 	}
 
 	@Transactional(readOnly = false)
-	public SvnProject create(String name, String url, long lastCheckedVersion)
-			throws SvnException {
+	public SvnProject create(String name, String url, long lastCheckedVersion) {
 		SvnProject proj = new SvnProject();
 		proj.setName(name);
 		proj.setUrl(url);
@@ -43,12 +41,12 @@ public class SvnProjectServiceImpl implements SvnProjectService {
 	}
 
 	@Transactional(readOnly = false)
-	public boolean save(SvnProject project) {
-		return dao.save(project);
+	public void save(SvnProject project) {
+		dao.save(project);
 	}
 
 	@Transactional(readOnly = false)
-	public boolean delete(String name) throws SvnException {
-		return dao.delete(dao.get(name));
+	public void delete(int id) {
+		dao.delete(dao.get(id));
 	}
 }

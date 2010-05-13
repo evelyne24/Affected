@@ -8,7 +8,7 @@
     <class name="SvnProject" table="svnproject">
 
         <id name="id">
-            <generator class="hilo"/>
+            <generator class="native"/>
         </id>
 
         <version name="version" unsaved-value="null"/>
@@ -18,6 +18,11 @@
         <property name="url"/>
 
         <property name="lastCheckedVersion" not-null="false"/>
+        
+        <set name="components" table="component" cascade="all-delete-orphan" lazy="false" fetch="subselect">
+        	<key column="project" />
+        	<one-to-many class="org.codeandmagic.affected.component.Component" />
+        </set>
 
     </class>
 

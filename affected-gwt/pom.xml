@@ -13,6 +13,9 @@
 	<packaging>war</packaging>
 	<name>Affected Gwt</name>
 
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- PROPERTIES                                                 -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 	<properties>
 		<maven.compiler.source>1.5</maven.compiler.source>
 		<maven.compiler.target>1.5</maven.compiler.target>
@@ -21,6 +24,9 @@
 		<log.level>INFO</log.level>
 	</properties>
 
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- DEPENDENCIES                                               -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 	<dependencies>
 		<dependency>
 			<groupId>org.codeandmagic</groupId>
@@ -62,8 +68,21 @@
 			<artifactId>smartgwt-skins</artifactId>
 			<version>2.1</version>
 		</dependency>
+		
+		<!-- Dojo Web Toolkit -->
+		<dependency>
+    		<groupId>org.dojotoolkit</groupId>
+    		<artifactId>dojo-war</artifactId>
+    		<version>1.4.2</version>
+    		<type>war</type>
+    		<scope>runtime</scope>
+		</dependency>
+		
 	</dependencies>
 
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- BUILD                                                      -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 	<build>
 		<outputDirectory>${gwt.output.directory}/WEB-INF/classes</outputDirectory>
 		<plugins>
@@ -107,6 +126,13 @@
                             <targetPath></targetPath>
 						</resource>
 					</webResources>
+					<overlays>
+						<overlay></overlay>
+						<overlay>
+							<groupId>org.dojotoolkit</groupId>
+							<artifactId>dojo-war</artifactId>
+						</overlay>
+					</overlays>
 				</configuration>
 			</plugin>
 
@@ -161,4 +187,5 @@
 
 		</plugins>
 	</build>
+	
 </project>

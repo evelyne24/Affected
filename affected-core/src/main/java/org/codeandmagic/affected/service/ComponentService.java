@@ -5,13 +5,15 @@ import java.util.List;
 import org.codeandmagic.affected.component.Component;
 
 public interface ComponentService {
-	public Component get(int id);
+	Component get(int id);
 
-	public Component getByTag(String tag);
+	Component getByTag(String tag);
 
-	public List<Component> getAll();
+	List<Component> getAll();
 
-	public boolean save(Component component);
+	Component create(String prettyName, String tag, int projectId, Integer parentId);
 
-	public boolean delete(Component component);
+	void save(Component component);
+
+	void delete(Component component);
 }

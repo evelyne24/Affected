@@ -7,7 +7,7 @@
 
     <class name="Component" table="component">
         <id name="id">
-            <generator class="hilo"/>
+            <generator class="native"/>
         </id>
 
         <natural-id>
@@ -18,15 +18,17 @@
 
         <property name="prettyName" />
 
-        <set name="children" table="component_children" cascade="all-delete-orphan" lazy="false" fetch="subselect">
-            <key column="parentId"/>
-            <many-to-many column="id" class="Component" fetch="select"/>
+        <set name="children" table="subcomponent" cascade="all-delete-orphan" lazy="false" fetch="select">
+            <key column="parentId" not-null="false" />
+            <many-to-many column="id" class="Component" fetch="select" lazy="false"/>
         </set>
 
-        <!--  <set name="parents" inverse="true" lazy="false" fetch="subselect">
-            <key column="id"/>
-            <many-to-many column="parentId" class="Component"/>
-        </set> -->
+        <set name="parents" table="subcomponent" cascade="all-delete-orphan" lazy="false" fetch="select">
+            <key column="id" />
+            <many-to-many column="parentId" class="Component" fetch="select" lazy="false" />
+        </set>
+        
+        <many-to-one name="project" column="project" class="org.codeandmagic.affected.svn.SvnProject" />
     </class>
 
 </hibernate-mapping>

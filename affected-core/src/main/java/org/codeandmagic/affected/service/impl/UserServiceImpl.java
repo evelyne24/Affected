@@ -44,12 +44,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Transactional(readOnly = false)
-	public boolean save(User user) {
-		return dao.save(user);
+	public void save(User user) {
+		dao.save(user);
 	}
 
 	@Transactional(readOnly = false)
-	public boolean delete(String username) throws SvnException {
-		return dao.delete(dao.get(username));
+	public void delete(String username) throws SvnException {
+		dao.delete(dao.get(username));
 	}
 }

@@ -9,7 +9,7 @@ import java.util.Set;
  * <li>gather the modified files list</li>
  * <li>for each modified file, retrieve its content from the svn</li>
  * <li>parse the content of the modified file in order to retrieve the
- * '@affects'' tags</li>
+ * '@affects' tags</li>
  * <li>modify the local version of the project in the database, to mark the fact
  * that this version was processed</li>
  * </ul>

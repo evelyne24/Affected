@@ -15,7 +15,7 @@ public interface UserService {
 
 	User create(String username, String password);
 
-	boolean save(User user);
+	void save(User user);
 
-	boolean delete(String username) throws SvnException;
+	void delete(String username) throws SvnException;
 }

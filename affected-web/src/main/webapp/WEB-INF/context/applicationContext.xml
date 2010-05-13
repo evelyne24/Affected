@@ -7,11 +7,4 @@
 
     <!-- Activates the check for @Required annotation that are used to check the integrity of the injected beans -->
     <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
-
-    <!-- Creating a global log bean -->
-    <bean id="log" class="org.springframework.beans.factory.config.CommonsLogFactoryBean">
-        <property name="logName" value="affected"/>
-    </bean>
-
-    
 </beans>

@@ -1,57 +1,41 @@
 package org.codeandmagic.affected.gwt.client;
 
-import java.util.List;
-
-import org.codeandmagic.affected.component.Component;
-import org.codeandmagic.affected.gwt.rpc.proxy.AbstractServiceProxy;
-import org.codeandmagic.affected.gwt.rpc.service.ComponentRpcService;
-import org.codeandmagic.affected.gwt.rpc.service.ComponentRpcServiceAsync;
+import org.codeandmagic.affected.gwt.client.dojowrapper.gfx.DojoDefaultGFX;
+import org.codeandmagic.affected.gwt.client.dojowrapper.gfx.DojoGFX;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.RootLayoutPanel;
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.RootPanel;
 
 public class Affected implements EntryPoint {
 
-	private static AffectedUiBinder uiBinder = GWT
-			.create(AffectedUiBinder.class);
-
-	interface AffectedUiBinder extends UiBinder<HorizontalPanel, Affected> {
-	}
-
-	@UiField
-	AppMenu appMenu;
-	@UiField
-	DrawingArea drawingArea;
-
-	private ComponentRpcServiceAsync componentService;
-
-	private void initServices() {
-		componentService = GWT.create(ComponentRpcService.class);
-		AbstractServiceProxy.initService(componentService);
-	}
+	private static Affected instance;
 
 	public void onModuleLoad() {
-		initServices();
+		instance = this;
+		subscribeLoad();
+	}
 
-		// Create the ui defined in Affected.ui.xml
-		HorizontalPanel mainWidget = uiBinder.createAndBindUi(this);
-		RootLayoutPanel.get().add(mainWidget);
+	/**
+	 * Subscribing to dojo OnLoad event.
+	 */
+	private native void subscribeLoad()
+	/*-{
+		$wnd.dojo.addOnLoad(@org.codeandmagic.affected.gwt.client.Affected::doDojoLoad());
+	}-*/;
 
-		componentService.getAll(new AsyncCallback<List<Component>>() {
+	/**
+	 * Method called after dojo loaded.
+	 */
+	public static void doDojoLoad() {
+		instance.realOnLoad();
+	}
 
-			public void onSuccess(List<Component> arg0) {
-				Window.alert(arg0 + " ");
-			}
+	private void realOnLoad() {
+		RootPanel root = RootPanel.get("gfx_holder");
+		FlowPanel gfxRoot = new FlowPanel();
+		DojoDefaultGFX.setInstance(new DojoGFX(gfxRoot));
+		root.add(gfxRoot);
 
-			public void onFailure(Throwable arg0) {
-				Window.alert("Failure!");
-			}
-		});
 	}
 }

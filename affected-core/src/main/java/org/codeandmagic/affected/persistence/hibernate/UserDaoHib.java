@@ -6,7 +6,6 @@ import org.codeandmagic.affected.persistence.UserDao;
 import org.codeandmagic.affected.svn.SvnException;
 import org.codeandmagic.affected.user.User;
 import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -42,21 +41,11 @@ public class UserDaoHib extends GenericDaoHib implements UserDao {
 		return user;
 	}
 
-	public boolean save(User user) {
-		try {
-			sessionFactory.getCurrentSession().saveOrUpdate(user);
-			return true;
-		} catch (HibernateException e) {
-			return false;
-		}
+	public void save(User user) {
+		sessionFactory.getCurrentSession().saveOrUpdate(user);
 	}
 
-	public boolean delete(User user) {
-		try {
-			sessionFactory.getCurrentSession().delete(user);
-			return true;
-		} catch (HibernateException e) {
-			return false;
-		}
+	public void delete(User user) {
+		sessionFactory.getCurrentSession().delete(user);
 	}
 }

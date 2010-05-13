@@ -1,6 +1,9 @@
 package org.codeandmagic.affected.svn;
 
 import java.io.Serializable;
+import java.util.Set;
+
+import org.codeandmagic.affected.component.Component;
 
 /**
  * An abstract concept representing a svn project, located on a repository at
@@ -17,6 +20,7 @@ public class SvnProject implements Serializable {
 	private long lastCheckedVersion;
 	private String username;
 	private String password;
+	private Set<Component> components;
 
 	/** @param id */
 	public void setId(int id) {
@@ -104,6 +108,21 @@ public class SvnProject implements Serializable {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	/**
+	 * @return the components of the project
+	 */
+	public Set<Component> getComponents() {
+		return components;
+	}
+
+	/**
+	 * @param components
+	 *            the components of the project to be set
+	 */
+	public void setComponents(Set<Component> components) {
+		this.components = components;
 	}
 
 	@Override

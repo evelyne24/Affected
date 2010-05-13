@@ -2,18 +2,16 @@ package org.codeandmagic.affected.service;
 
 import java.util.List;
 
-import org.codeandmagic.affected.svn.SvnException;
 import org.codeandmagic.affected.svn.SvnProject;
 
 public interface SvnProjectService {
-	SvnProject get(String name) throws SvnException;
+	SvnProject get(int id);
 
 	List<SvnProject> getAll();
 
-	SvnProject create(String name, String url, long lastCheckedVersion)
-			throws SvnException;
+	SvnProject create(String name, String url, long lastCheckedVersion);
 
-	boolean save(SvnProject project);
+	void save(SvnProject project);
 
-	boolean delete(String name) throws SvnException;
+	void delete(int id);
 }

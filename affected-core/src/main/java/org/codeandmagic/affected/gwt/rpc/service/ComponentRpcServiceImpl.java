@@ -19,8 +19,8 @@ public class ComponentRpcServiceImpl implements ComponentRpcService {
 		this.service = service;
 	}
 
-	public boolean delete(Component component) {
-		return service.delete(component);
+	public void delete(Component component) {
+		service.delete(component);
 	}
 
 	public Component get(int id) {
@@ -35,7 +35,7 @@ public class ComponentRpcServiceImpl implements ComponentRpcService {
 		return service.getByTag(tag);
 	}
 
-	public boolean save(Component component) {
-		return service.save(component);
+	public void save(Component component) {
+		service.save(component);
 	}
 }

@@ -5,15 +5,15 @@
   <title>Affected</title>
 </head>
 <body>
-  <h1>Affected</h1>
   <h2>Svn Projects</h2>
   <ul>
   	#foreach($p in $projects)
   	  <ol>
-  	    <b>$p.name</b> - 
+  	    <b>Project $Display.capitalize($p.name)</b> - 
   	    <a href="svnproject/view.do?id=$p.id">View components</a> - 
   	    <a href="svnproject/edit.do?id=$p.id">Edit</a> -
-  	    <a href="svnproject/delete.do?id=$p.id">Delete</a>
+  	    <a href="svnproject/delete.do?id=$p.id">Delete</a> -
+		<a href="svnproject/process.do?id=$p.id">Process</a>
   	  </ol>
   	#end
   </ul>

@@ -12,6 +12,9 @@
     <packaging>war</packaging>
     <name>Affected Web</name>
 
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- PROPERTIES                                                 -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <dependencies>
         <dependency>
             <groupId>org.codeandmagic</groupId>
@@ -68,7 +71,9 @@
         </dependency>
     </dependencies>
 
-    <!-- Building instructions and lifecycle -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- BUILD                                                 -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <build>
         <finalName>affected</finalName>
 

@@ -5,9 +5,9 @@ import java.util.List;
 import org.codeandmagic.affected.component.Component;
 
 public interface ComponentDao {
-	public boolean save(Component component);
+	public void save(Component component);
 
-	public boolean delete(Component component);
+	public void delete(Component component);
 
 	public Component get(int id);
 

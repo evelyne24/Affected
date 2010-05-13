@@ -1,1 +1,12 @@
-$proj
+#if($proj)
+	<p>Project <b>$Display.capitalize($proj.name)</b></p>
+	<p>Components:</br>
+	<ul>
+    #foreach($comp in $Sorter.sort($proj.components, ["prettyName"]))
+    	<li><a href="$Link.contextPath/component/view.do?id=$comp.id">$Display.capitalize($comp.prettyName)</a></li>
+	#end
+	</ul>
+	</p>
+#else
+	<p>No projects.</p>
+#end

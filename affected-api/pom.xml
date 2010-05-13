@@ -1,27 +1,36 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>affected</artifactId>
-    <groupId>org.codeandmagic</groupId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <groupId>org.codeandmagic</groupId>
-  <artifactId>affected-api</artifactId>
-  <version>${affected.version}</version>
-  <name>Affected Api</name>
-   
-  <dependencies>
- 		<!-- Gwt Servlet (needed by gwt for serialization of java classes) -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>affected</artifactId>
+		<groupId>org.codeandmagic</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>org.codeandmagic</groupId>
+	<artifactId>affected-api</artifactId>
+	<version>${affected.version}</version>
+	<name>Affected Api</name>
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- DEPENDENCIES                                               -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<dependencies>
+		<!-- Gwt Servlet (needed by gwt for serialization of java classes) -->
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-servlet</artifactId>
 			<version>${gwt.version}</version>
 		</dependency>
-  </dependencies>
-  
-  <build>
-		<!-- Include java files in the jar because they're needed by gwt client for compilation -->
+	</dependencies>
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- 
+		Include java files in the jar because they're needed by Gwt client for
+		compilation
+	-->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<build>
 		<resources>
 			<resource>
 				<directory>src/main/java</directory>
@@ -36,5 +45,5 @@
 				</includes>
 			</resource>
 		</resources>
-   </build>
+	</build>
 </project>

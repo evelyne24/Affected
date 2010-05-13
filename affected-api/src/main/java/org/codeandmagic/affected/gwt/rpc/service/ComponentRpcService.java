@@ -13,7 +13,7 @@ public interface ComponentRpcService extends RemoteService {
 
 	List<Component> getAll();
 
-	boolean save(Component component);
+	void save(Component component);
 
-	boolean delete(Component component);
+	void delete(Component component);
 }

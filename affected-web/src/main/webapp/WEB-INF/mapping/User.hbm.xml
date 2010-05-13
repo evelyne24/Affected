@@ -7,7 +7,7 @@
     <class name="User" table="user">
 
         <id name="id">
-            <generator class="hilo"/>
+            <generator class="native"/>
         </id>
 
         <version name="version" unsaved-value="null"/>

@@ -37,12 +37,8 @@ public class SvnProjectController {
 	public ModelAndView view(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) {
 		ModelAndView m = new ModelAndView("svnproject/view");
-		try {
-			m.addObject("proj", svnProjectService.get(request
-					.getParameter("name")));
-		} catch (SvnException e) {
-			m.addObject("exc", e);
-		}
+		m.addObject("proj", svnProjectService.get(Integer.parseInt(request
+				.getParameter("id"))));
 		return m;
 	}
 
@@ -50,13 +46,9 @@ public class SvnProjectController {
 	public ModelAndView create(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) {
 		ModelAndView m = new ModelAndView("svnproject/create");
-		try {
-			m.addObject("proj", svnProjectService.create(request
-					.getParameter("name"), request.getParameter("url"), Long
-					.parseLong(request.getParameter("lastCheckedVer"))));
-		} catch (SvnException e) {
-			m.addObject("exc", e);
-		}
+		m.addObject("proj", svnProjectService.create(request
+				.getParameter("name"), request.getParameter("url"), Long
+				.parseLong(request.getParameter("lastCheckedVer"))));
 		return m;
 	}
 
@@ -64,13 +56,8 @@ public class SvnProjectController {
 	public ModelAndView delete(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) {
 		ModelAndView m = new ModelAndView("svnproject/delete");
-		try {
-			svnProjectService.delete(request.getParameter("name"));
-			m.addObject("result", "OK");
-		} catch (SvnException e) {
-			m.addObject("exc", e);
-		}
-
+		svnProjectService.delete(Integer.parseInt(request.getParameter("id")));
+		m.addObject("result", "OK");
 		return m;
 	}
 
@@ -80,7 +67,7 @@ public class SvnProjectController {
 		ModelAndView m = new ModelAndView("svnproject/process");
 		try {
 			m.addObject("result", processor.process(svnProjectService
-					.get(request.getParameter("name"))));
+					.get(Integer.parseInt(request.getParameter("id")))));
 		} catch (SvnException e) {
 			m.addObject("exc", e);
 		}

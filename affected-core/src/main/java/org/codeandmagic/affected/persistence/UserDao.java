@@ -16,7 +16,7 @@ public interface UserDao {
 
 	User create(String username, String password);
 
-	boolean save(User user);
+	void save(User user);
 
-	boolean delete(User user);
+	void delete(User user);
 }
